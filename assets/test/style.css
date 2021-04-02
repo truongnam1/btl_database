@@ -1,0 +1,44 @@
+.datepicker-inline {
+    border: 1px solid #efefef;
+    box-shadow: 0px 6px 10px #f7f7f7;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.today,
+.clear,
+.datepicker-switch,
+.day,
+.month {
+    transition: ease-out 0.3s;
+}
+
+.today:hover,
+.clear:hover,
+.datepicker-switch:hover,
+.day:hover,
+.month:hover {
+    transition: ease-in 0.3s;
+}
+
+.datepicker-days,
+.datepicker-months,
+.datepicker-years,
+.datepicker-decades,
+.datepicker-centuries {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#datepicker1 .badge,
+#datepicker2 .badge {
+    margin: 0 6px 10px;
+}

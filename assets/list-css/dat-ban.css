@@ -1,0 +1,38 @@
+.content {}
+
+#banner-datban-top {
+    width: 100%;
+    min-height: 500px;
+    background: url(../img/dat-ban/King-BBQ_JPEG_7-1.jpg) no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+#form-datban-lite {
+    position: absolute;
+    background: url(../img/dat-ban/bg-book.png) no-repeat;
+    background-size: cover;
+    margin-left: 64%;
+    margin-right: 20%;
+    margin-top: 5%;
+    width: 30%;
+}
+
+#form-datban-lite .group_field {
+    color: brown;
+}
+
+#form-datban-lite .submit {
+    background-color: aliceblue;
+    color: red;
+    text-transform: uppercase;
+}
+
+#dat-ban {
+    background: url(../img/dat-ban/bg-section-3.png);
+    color: aliceblue;
+}
+
+#dat-ban .img-datban-down img {
+    width: 100%;
+}
