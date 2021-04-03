@@ -48,7 +48,7 @@
       </div>
 
       <!-- begin: dat ban duoi -->
-      <div class="_content book-bbq text-light" id="dat-ban">
+      <div class="_content book-bbq text-light" id="dat-ban" action="back_end/booking.php">
 
         <!-- begin form -->
         <div class="col-md-6">
@@ -95,7 +95,7 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="inputState">Chọn giờ</label>
-                <select id="inputState" class="form-control" name="time-1">
+                <select id="inputState" class="form-control" name="time">
                   <option selected>Choose...</option>
                   <option>10:00</option>
                   <option>11:00</option>
@@ -103,7 +103,7 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="inputState">Chọn ngày</label>
-                <select id="inputState" class="form-control" name="time-2">
+                <select id="inputState" class="form-control" name="date">
                   <option selected>Choose...</option>
                   <option>02/02/2021</option>
                   <option>03/03/2023</option>
