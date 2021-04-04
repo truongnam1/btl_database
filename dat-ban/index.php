@@ -6,10 +6,15 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" type="text/css" href="../assets/list-css/style.css">
-  <link rel="stylesheet" type="text/css" href="../assets/list-css/dat-ban.css">
+  
+
+  <!-- <script type="text/javascript" src="../assets/js/bootstrap-timepicker.js"></script> -->
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- css customs -->
+  <link rel="stylesheet" type="text/css" href="../assets/list-css/style.css">
+  <link rel="stylesheet" type="text/css" href="../assets/list-css/dat-ban.css">
 </head>
 
 <body>
@@ -21,10 +26,13 @@
       ?>
     </div>
 
-    <div class="content">
+    <div class="_content">
+
 
       <!-- dat ban tren -->
-      <div class="col-md-12" id="banner-datban-top">
+
+      <div class="" id="banner-datban-top">
+        <!--  
         <div class="form-group" id="form-datban-lite">
           <p>ĐẶT BÀN NGAY</p>
           <a href="#">hotline: 1900234546</a>
@@ -45,15 +53,99 @@
             </form>
           </div>
         </div>
+        -->
       </div>
 
+      <!-- usp -->
+      <div class="content-usp">
+
+        <div class="_title-usp">
+          <span>KING BBQ</span>
+          <h2>USP</h2>
+        </div>
+        <div class="row boxtext-usp">
+          <div class="boxtext-usp-item col-md-3">
+
+            <p>
+              <img src="..\assets\img\dat-ban\spa_flower_96px.png" alt="">
+              <strong>Dịch vụ khách hàng</strong>
+              tận tâm
+            </p>
+          </div>
+          <div class="boxtext-usp-item col-md-3">
+
+            <p>
+              <img src="..\assets\img\dat-ban\spa_flower_96px.png" alt="">
+              <strong>Bếp trưởng Hàn Quốc với hơn 40 năm kinh nghiệm</strong>
+              đã nghiên cứu và sáng tạo ra nhiều công thức chế biến hoàn hảo.
+            </p>
+          </div>
+          <div class="boxtext-usp-item col-md-3">
+
+            <p>
+              <img src="..\assets\img\dat-ban\spa_flower_96px.png" alt="">
+              <strong>Hoạt động với 2 concept chính: Buffet và Alacarte</strong>
+              mang đến cho khách hàng nhiều lựa chọn phong phú nhưng vẫn đảm bảo: Đẳng cấp
+              , Sang trọng, Chuyên nghiệp
+            </p>
+          </div>
+          <div class="boxtext-usp-item col-md-3">
+
+            <p>
+              <img src="..\assets\img\dat-ban\spa_flower_96px.png" alt="">
+              <strong>Nguồn nguyên liệu</strong>
+              luôn được đảm bảo, được tuyển chọn kỹ lưỡng, và nướng trên hệ thống bếp gốm hồng ngoại hiện đại nhất Hàn Quốc
+              , giúp các món nướng vừa lưu giữ vị ngọt thơm của các món thịt mà không hại cho sức khỏe.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <hr style="border-top: 1px solid #fff">
+
+      <!-- begin menu -->
+      <div class="_content-menu col-md-12">
+        <div class="_title-menu">
+          <span>KING BBQ</span>
+          <h2>Menu</h2>
+        </div>
+        <div class="row _item-menu col-md-12">
+          <div class="left-item col-md-6">
+            <img src="..\assets\img\dat-ban\img-menu-left.png" alt="">
+            <div class="box-text">
+              <a href="">
+                <h5>Buffet</h5>
+              </a>
+            </div>
+          </div>
+          <div class="right-item col-md-6">
+            <img src="..\assets\img\dat-ban\img-menu-right.png" alt="">
+            <div class="box-text">
+
+              <a href="">
+                <h5>Alarcate</h5>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end menu -->
+
+      <hr style="border-top: 1px solid #fff">
+
       <!-- begin: dat ban duoi -->
-      <div class="_content book-bbq text-light" id="dat-ban" action="back_end/booking.php">
+      <div class="row book-bbq text-light col-md-12" id="dat-ban" action="back_end/booking.php">
+
 
         <!-- begin form -->
-        <div class="col-md-6">
+        <div class="col-md-7 form-datban">
+          <div class="title-datban-down">
+            <span>KING BBQ</span>
+            <h2>Đặt bàn</h2>
+          </div>
           <form class="" action="" method="post">
-            <div class="form-row">
+            <div class="form-row row">
               <div class="form-group col-md-6">
                 <label for="inputname">Họ và tên</label>
                 <input type="text" class="form-control" id="inputfullname-down" name="inputFullName-down">
@@ -71,55 +163,53 @@
               <div class="form-group col-md-4">
                 <label for="inputState">Khu vực</label>
                 <select id="inputState" class="form-control" name="inputState-down">
-                  <option selected>Choose...</option>
-                  <option>mien nam</option>
+                  <option value="" selected disabled hidden>---</option>
+                  <option value="1">Miền Nam</option>
+                  <option value="2">Miền Bắc</option>
                 </select>
               </div>
               <div class="form-group col-md-8">
                 <label for="inputBranch">Chi nhánh</label>
                 <select id="inputBranch" class="form-control" name="inputBranch-down">
-                  <option selected>Choose...</option>
+                  <option selected disabled hidden>---</option>
                   <option>iph</option>
                 </select>
               </div>
             </div>
             <div class="form-row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-3">
                 <label for="inputAmount">Số người</label>
                 <select id="inputAmount" class="form-control" name="inputAmountPeople">
-                  <option selected>Choose...</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
+                  <option selected disabled hidden>---</option>
+                  <?php
+                  for ($i = 2; $i <= 50; $i++) {
+                    echo "<option>$i</option>";
+                  }
+                  ?>
                 </select>
               </div>
               <div class="form-group col-md-4">
-                <label for="inputState">Chọn giờ</label>
-                <select id="inputState" class="form-control" name="time">
-                  <option selected>Choose...</option>
-                  <option>10:00</option>
-                  <option>11:00</option>
-                </select>
+
+                <label for="inputTime">Chọn giờ</label>
+                <input type="time" id="inputTime" class="form-control" name="time">
+
               </div>
-              <div class="form-group col-md-4">
-                <label for="inputState">Chọn ngày</label>
-                <select id="inputState" class="form-control" name="date">
-                  <option selected>Choose...</option>
-                  <option>02/02/2021</option>
-                  <option>03/03/2023</option>
-                </select>
+              <div class="form-group col-md-5">
+                <label for="inputDate">Chọn ngày</label>
+                <input type="date" id="inputDate" class="form-control" name="date">
+
               </div>
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Lời nhắn</label>
               <textarea class="form-control" id="formControlTextarea1" rows="3" name="note"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Đặt bàn ngay</button>
+            <button type="submit" class="btn btn-outline-secondary btn-submit-datban" name="submit">Đặt bàn ngay</button>
           </form>
         </div>
         <!-- end form -->
 
-        <div class="img-datban-down col-md-6">
+        <div class="img-datban-down col-md-5">
           <img src="..\assets\img\dat-ban\img-form-book-down.png" alt="">
         </div>
 
@@ -128,41 +218,22 @@
 
 
       <!-- test -->
-
+    <div style="color:aliceblue">
       <?php
       echo '<pre>';
       print_r($_POST);
       echo '</pre';
       ?>
-
-      <p id="datepairExample">
-        <input type="text" class="date start" />
-        <input type="text" class="time start" /> to
-        <input type="text" class="time end" />
-        <input type="text" class="date end" />
-      </p>
-
-      <script type="text/javascript" src="..\assets\js\datepair.js"></script>
-      <script type="text/javascript" src="..\assets\js\jquery.datepair.js"></script>
-      <script>
-        // initialize input widgets first
-        $('#datepairExample .time').timepicker({
-          'showDuration': true,
-          'timeFormat': 'g:ia'
-        });
-
-        $('#datepairExample .date').datepicker({
-          'format': 'yyyy-m-d',
-          'autoclose': true
-        });
-
-        // initialize datepair
-        $('#datepairExample').datepair();
-      </script>
-
-      <!-- end test -->
-
+      <div class="form-group">
+        <label for="">ccccccccccccccccc</label>
+        <textarea class="form-control" name="" id="" rows="3"></textarea>
+      </div>
     </div>
+    </div>
+
+    <!-- end test -->
+
+  </div>
   </div>
 
 

@@ -1,5 +1,5 @@
 <?php
-    include 'cannect.php';
+    include 'connect.php';
     //insert data into database
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // collect value of input field

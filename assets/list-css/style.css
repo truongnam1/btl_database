@@ -8,7 +8,7 @@
 }
 
 .container-fluid {
-    background-color: rgba(134, 134, 134, 0.473);
+    background-color: rgb(255, 255, 255);
     /*     border: 2px solid red; */
     /* min-height: 5000px; */
     /* min-width: 1000px; */
@@ -56,7 +56,7 @@
 .slide {
     margin-top: 2px;
     position: relative;
-    width: max-content;
+    /* width: 100%; */
 }
 
 
@@ -66,6 +66,64 @@
     margin-top: 50px;
     width: 100%;
 }
+
+
+/* concecpt */
+
+.article-content {
+    margin-bottom: 70px;
+}
+
+.concept-content {
+    margin-top: 50px;
+}
+
+#link-menu a {
+    color: #c59d5f;
+}
+
+#text-concept-content {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.article-content .concept-article img {
+    width: 100%;
+}
+
+
+/* banner menu */
+
+.banner-menu {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.banner-menu .text-banner {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    color: wheat;
+    height: 100%;
+    margin-top: 8%;
+}
+
+.banner-menu .item-menu-img1,
+.banner-menu .item-menu-img2,
+.banner-menu .item-menu-img3 {
+    margin: 0;
+}
+
+.banner-menu .item-menu-img {
+    min-height: 400px;
+}
+
+.banner-menu .item-menu-img img {
+    width: 100%;
+}
+
+
+/* menu */
 
 .gallery-article .table-article {
     /* position: relative; */
@@ -81,6 +139,7 @@
 
 .gallery-article .table-article img {
     width: 100%;
+    margin: 5px;
 }
 
 .article-content .text-article {
@@ -124,6 +183,42 @@
     margin-top: 50px;
     color: #515150;
 }
+
+
+/* banner restaurant */
+
+.banner-restaurant {
+    background: url(../img/nha-hang-king-bbq-1.jpg) no-repeat;
+    min-height: 458px;
+    margin-left: 15px;
+    margin-bottom: 90px;
+    position: relative;
+    background-size: cover;
+}
+
+.banner-restaurant .border-before {
+    background: url(../img/border-wave.svg) repeat-x;
+    background-size: 14px;
+    width: 100%;
+    height: 15px;
+    margin-top: -5px;
+    margin-left: -15px;
+    position: absolute;
+}
+
+.banner-restaurant .border-after {
+    background: url(../img/border-wave.svg) repeat-x;
+    background-size: 14px;
+    width: 100%;
+    height: 15px;
+    margin-top: 388px;
+    position: absolute;
+    margin-left: -15px;
+    ;
+}
+
+
+/* end: banner restaurant*/
 
 .content-img {
     position: relative;
@@ -175,6 +270,7 @@
 }
 
 .footer .copyright-text {
+    padding: 0;
     position: relative;
     min-height: 150px;
     background-color: red;
@@ -190,4 +286,12 @@
 
 #text-end a {
     color: #c59d5f;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(225,225,225, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: #73636e;
 }

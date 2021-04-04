@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <title>Title</title>
@@ -12,7 +12,14 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="./assets/list-css/style.css">
   <link rel='stylesheet' id='google-webfonts-css' href='http://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C700%2C900%7CCabin%3A400%2C700%2C400italic%2C700italic%7CHerr+Von+Muellerhoff' type='text/css' media='all' />
+  <style>
+    @media (max-width: 990px) {
+      .navbar .nav-item a {
+        color: #212529;
+      }
 
+    }
+  </style>
 </head>
 
 <body>
@@ -57,7 +64,44 @@
 
 
     <!-- begin content -->
-    <div class="content">
+    <div class="row content">
+
+      <!-- concept -->
+      <div class="row article-content concept-content">
+        <div class="col-md-6 text-article" id="text-concept-content">
+          <p class="title-text">Concept</p>
+
+          <p class="content-text">Bí quyết của King BBQ nằm ở nước sốt tẩm ướp thịt được chế biến từ nguyên liệu hoàn toàn tự nhiên,
+            theo công thức bí truyền, hội tụ tinh hoa từ những miền ẩm thực nổi tiếng Hàn Quốc.
+            Được mệnh danh là “Vua nướng”,
+            Chuỗi nhà hàng King BBQ đem đến cho khách hàng 2 hình thức trải nghiệm đặc sắc sau:</p>
+          <p id="link-menu">
+            <a href="">King BBQ Alarcate</a> và <a href="">King BBQ Buffet</a>
+          </p>
+          <button class="button-text">Concept</button>
+          <hr>
+        </div>
+        <div class="col-md-6 concept-article" id="concept-restaurant-0">
+          <img src="./assets/img/concpet.jpg" alt="">
+        </div>
+      </div>
+
+      <!-- banner menu -->
+      <div class="row banner-menu">
+        <div class="row item-menu-img">
+          <div class="col-md-4 item-menu-img1"><img src="./assets/img/banner-menu-1-1.png" alt=""></div>
+          <div class="col-md-4 item-menu-img2"><img src="./assets/img/banner-menu-3-1.png" alt=""></div>
+          <div class="col-md-4 item-menu-img3"><img src="./assets/img/banner-menu-2-1.png" alt=""></div>
+        </div>
+        <div class="text-banner">
+          <span>Menu</span>
+          <h3>MENU KING BBQ</h3>
+        </div>
+
+
+      </div>
+
+      <!-- menu -->
       <div class="row article-content">
         <div class="col-md-6 gallery-article" id="gallery-menu-1">
           <table class="table-article">
@@ -86,15 +130,17 @@
           <hr>
         </div>
       </div>
+      <!-- end menu -->
 
       <!-- banner -->
-      <div class="col-md-12 content-img">
-        <div class="banner-1">
-          <img src="assets\img\nha-hang-king-bbq-1.jpg" alt="" class="img-banner">
-          <div class="border-banner"></div>
-          <div class="border-banner"></div>
-          <p class="text-banner">day la chu</p>
+      <div class="col-md-12 banner-restaurant">
+        <!-- <img src="assets\img\nha-hang-king-bbq-1.jpg" alt="" class="img-banner"> -->
+        <div class="border-before"></div>
+        <div class="text-banner">
+          <span>restaurant</span>
+          <h3>NHÀ HÀNG KING BBQ</h3>
         </div>
+        <div class="border-after"></div>
       </div>
 
       <!-- nha hang -->
@@ -130,9 +176,9 @@
     <!-- end content -->
 
     <!-- begin footer -->
-    <div class="footer">
-      <?php 
-        include 'footer_main.php';
+    <div class="row footer">
+      <?php
+      include 'footer_main.php';
       ?>
     </div>
     <!-- end footer -->
