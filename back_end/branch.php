@@ -5,7 +5,7 @@
         
         //lay ma khu vuc
         $khu_vuc = array();
-        $sql = "SELECT DISTINCT idkhu_vuc,ten_khu_vuc FROM khu_vuc";
+        $sql = "SELECT idkhu_vuc,ten_khu_vuc FROM khu_vuc";
         $result = $conn->query($sql);
         while($row = $result->fetch_assoc()) {
             $idkhu_vuc[$row["ten_khu_vuc"]] = $row["idkhu_vuc"];
