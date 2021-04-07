@@ -164,8 +164,12 @@
                 <label for="inputState">Khu vực</label>
                 <select id="inputState" class="form-control" name="inputState-down">
                   <option value="" selected disabled hidden>---</option>
-                  <option value="1">Miền Nam</option>
-                  <option value="2">Miền Bắc</option>
+                  <!-- <option value="1">Miền Nam</option>
+                  <option value="2">Miền Bắc</option> -->
+                  <?php
+                    include_once 'dat-ban.php';
+                    echo htmlOpitionKhuVuc();
+                  ?>
                 </select>
               </div>
               <div class="form-group col-md-8">
