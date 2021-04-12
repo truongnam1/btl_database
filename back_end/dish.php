@@ -44,11 +44,27 @@
      * array trả về cấu trúc giống với array detailCombo($idcombo) trả về, bổ sung thêm link_image nữa nhá
      * 
      */
-    function($typeConcept, $minPrice, $maxPrice) {
-        
+    function filter($typeConcept, $minPrice, $maxPrice) {
+        include 'connect.php';
+
+        $list = array();
+        $sql = "SELECT mon_an.gia, mon_an.mo_ta, mon_an.ten_mon_an, mon_an.link_image FROM thuc_don
+                INNER JOIN mon_an ON mon_an.idthuc_don = thuc_don.idthuc_don
+                WHERE thuc_don.ten_thuc_don = 'King BBQ Alacarte' AND mon_an.gia > 100000 AND mon_an.gia < 500000 
+                ORDER BY mon_an.gia, mon_an.ten_mon_an" ;
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $dish = array();
+            $dish['gia'] = $row["gia"];
+            $dish['mo_ta'] = $row["mo_ta"];
+            $dish['link_image'] = $row["link_image"];
+            $list[$row["ten_mon_an"]] = $dish;
+        }
+
+        return $list;
     }
 
-    // $list_mon_an = listDish();
+    // $list_mon_an = filter("King BBQ Alacarte",100000,400000);
     // echo "<pre>";
     // print_r($list_mon_an);
     // echo "<pre>";

@@ -3,7 +3,7 @@
         include 'connect.php';
         
         $detailCombo = array();
-        $sql = "SELECT mon_an.gia, mon_an.mo_ta, mon_an.ten_mon_an FROM mon_an 
+        $sql = "SELECT mon_an.gia, mon_an.mo_ta, mon_an.ten_mon_an, mon_an.link_image FROM mon_an 
                 INNER JOIN combo_monan ON mon_an.idmon_an = combo_monan.idmon_an
                 WHERE combo_monan.idcombo = $idcombo ";
         $result = $conn->query($sql);
@@ -11,6 +11,7 @@
             $dish = array();
             $dish['gia'] = $row["gia"];
             $dish['mo_ta'] = $row["mo_ta"];
+            $dish['link_image'] = $row["link_image"];
             $detailCombo[$row["ten_mon_an"]] = $dish;
         }
         return $detailCombo;
