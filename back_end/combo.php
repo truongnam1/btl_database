@@ -12,10 +12,13 @@
         $listPrice = array();
         foreach($list_thuc_don as $ten => $id) {
             $combo = array();
-            $sql = "SELECT gia,idcombo FROM combo WHERE idthuc_don = $id";
+            $sql = "SELECT gia, idcombo, name_combo FROM combo WHERE idthuc_don = $id";
             $result = $conn->query($sql);
             while($row = $result->fetch_assoc()) {
-                $combo[$row["idcombo"]] = $row["gia"];
+                $combo[$row["idcombo"]] = array();
+                $combo[$row["idcombo"]]["gia"] = $row["gia"];
+                $combo[$row["idcombo"]]["name_combo"] = $row["name_combo"];
+                // $combo[$row["idcombo"]][] = $row["name_combo"];
             }
             $listPrice[$ten] = $combo;
         }

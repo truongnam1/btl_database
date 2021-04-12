@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
+
 
   <!-- <script type="text/javascript" src="../assets/js/bootstrap-timepicker.js"></script> -->
   <!-- Bootstrap CSS -->
@@ -15,6 +15,8 @@
   <!-- css customs -->
   <link rel="stylesheet" type="text/css" href="../assets/list-css/style.css">
   <link rel="stylesheet" type="text/css" href="../assets/list-css/dat-ban.css">
+
+
 </head>
 
 <body>
@@ -148,11 +150,11 @@
             <div class="form-row row">
               <div class="form-group col-md-6">
                 <label for="inputname">Họ và tên</label>
-                <input type="text" class="form-control" id="inputfullname-down" name="inputFullName-down">
+                <input type="text" class="form-control" id="inputfullname-down" name="inputFullName-down" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="inputphoneno">Số điện thoại</label>
-                <input type="text" class="form-control" id="inputphoneNo" name="inputPhoneNo-down">
+                <input type="text" class="form-control" id="inputphoneNo" name="inputPhoneNo-down" required>
               </div>
             </div>
             <div class="form-group">
@@ -162,29 +164,37 @@
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="inputState">Khu vực</label>
-                <select id="inputState" class="form-control" name="inputState-down">
-                  <option value="" selected disabled hidden>---</option>
+                <select id="inputState" class="form-control" name="inputState-down" required>
+                  <!-- <option value="" selected disabled hidden>---</option> -->
+                  <option value="" disabled hidden>---</option>
                   <!-- <option value="1">Miền Nam</option>
                   <option value="2">Miền Bắc</option> -->
+                  <script type="text/javascript" src="dat-ban.js"></script>
                   <?php
-                    include_once 'dat-ban.php';
-                    echo htmlOpitionKhuVuc();
+                  include_once 'dat-ban.php';
+                  echo htmlOpitionKhuVuc();
                   ?>
                 </select>
               </div>
               <div class="form-group col-md-8">
                 <label for="inputBranch">Chi nhánh</label>
-                <select id="inputBranch" class="form-control" name="inputBranch-down">
-                  <option selected disabled hidden>---</option>
-                  <option>iph</option>
+                <select id="inputBranch" class="form-control" name="inputBranch-down" value="default" required>
+                  <!-- <option selected disabled hidden>---</option> -->
+                  <option disabled hidden>---</option>
+                  <!-- <option>iph</option> -->
+                  <?php
+
+                  echo htmlOptionChiNhanh();
+                  ?>
                 </select>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-3">
                 <label for="inputAmount">Số người</label>
-                <select id="inputAmount" class="form-control" name="inputAmountPeople">
-                  <option selected disabled hidden>---</option>
+                <select id="inputAmount" class="form-control" name="inputAmountPeople" required>
+                  <!-- <option selected disabled hidden value="default">---</option> -->
+                  <option disabled hidden value="default">---</option>
                   <?php
                   for ($i = 2; $i <= 50; $i++) {
                     echo "<option>$i</option>";
@@ -195,7 +205,7 @@
               <div class="form-group col-md-4">
 
                 <label for="inputTime">Chọn giờ</label>
-                <input type="time" id="inputTime" class="form-control" name="time">
+                <input type="time" id="inputTime" class="form-control" name="time" required>
 
               </div>
               <div class="form-group col-md-5">
@@ -222,18 +232,7 @@
 
 
       <!-- test -->
-    <div style="color:aliceblue">
-      <?php
-      echo '<pre>';
-      print_r($_POST);
-      echo '</pre';
-      ?>
-      <div class="form-group">
-        <label for="">ccccccccccccccccc</label>
-        <textarea class="form-control" name="" id="" rows="3"></textarea>
-      </div>
-    </div>
-    </div>
+    
 
     <!-- end test -->
 
@@ -254,6 +253,9 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <!-- js customs -->
+  <script src="dat-ban.js"></script>
 </body>
 
 </html>

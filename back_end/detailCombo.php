@@ -17,7 +17,21 @@
     }
 
     // $list_mon_an = detailCombo(101);
+
     // echo "<pre>";
-    // print_r($list_mon_an);
+    // print_r(detailCombo(101));
     // echo "<pre>";
+
+    // echo "<pre>";
+    // print_r(detailCombo(102));
+    // echo "<pre>";
+
+    // echo "<pre>";
+    // print_r(detailCombo(103));
+    // echo "<pre>";
+
+    // echo "<pre>";
+    // print_r(detailCombo(201));
+    // echo "<pre>";
+
 ?>

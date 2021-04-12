@@ -24,11 +24,15 @@ function khuVuc()
     return $list_khu_vuc;
 }
 
-function htmlOpitionKhuVuc()
+function htmlOpitionKhuVuc($selectitem = 0)
 {
     $htmlKhuVuc = '';
     foreach (khuVuc() as $key => $value) {
+        if($selectitem == $key) {
+            $htmlKhuVuc = $htmlKhuVuc . "<option value = \"$value\" selected>$value</option>";
+        } else {
         $htmlKhuVuc = $htmlKhuVuc . "<option value = \"$value\">$value</option>";
+        }
         // echo "day la chu";
     }
 
@@ -47,7 +51,7 @@ function htmlOptionChiNhanh($khu_vuc = 'all')
         }
     } else {
         foreach (chiNhanh($khu_vuc) as $branch) {
-            $chi_nhanh = $chi_nhanh . "<option>$branch</option>";
+            $chi_nhanh = $chi_nhanh . "<option  value = \"$branch--$khu_vuc\">$branch</option>";
         }
     }
     return $chi_nhanh;
@@ -56,17 +60,17 @@ function htmlOptionChiNhanh($khu_vuc = 'all')
 
 
 
-echo "ben duoi";
-echo "<pre>";
-echo '<div class="form-group col-md-8">
-<label for="inputBranch">Chi nhánh</label>
-<select id="inputBranch" class="form-control" name="inputBranch-down">
-  <option selected disabled hidden>---</option>
-  ';
+// echo "ben duoi";
+// echo "<pre>";
+// echo '<div class="form-group col-md-8">
+// <label for="inputBranch">Chi nhánh</label>
+// <select id="inputBranch" class="form-control" name="inputBranch-down">
+//   <option selected disabled hidden>---</option>
+//   ';
 
-echo htmlOptionChiNhanh('en Bac');
-echo "<option>iph</option>
-</select>
-</div>";
-echo "</pre>";
+// echo htmlOpitionKhuVuc();
+// echo "<option>iph</option>
+// </select>
+// </div>";
+// echo "</pre>";
 ?>
