@@ -41,7 +41,7 @@
         while($row = $idban_available->fetch_assoc()) {
             $idban_an = $row["idban_an"];
             $sql = "SELECT idban_an FROM dat_ban
-                    WHERE ngay_dat = $date AND thoi_gian_dat = $time AND idban_an = $idban_an AND trang_thai = 'dang_cho'";
+                    WHERE ngay_dat = $date AND thoi_gian_dat = $time AND idban_an = $idban_an";
             $result = $conn->query($sql);
             if ($result->num_rows = 0) {
                 //idban khong bi trung
@@ -50,8 +50,8 @@
         }
 
         //insert to dat_ban
-        $sql = "INSERT INTO dat_ban (idkhach_hang, idban_an, thoi_gian_dat, ngay_dat, loi_nhan, trang_thai)
-                VALUES ($idkhach_hang, $idban_an, $time, $date , $text, 'dang_cho')";
+        $sql = "INSERT INTO dat_ban (idkhach_hang, idban_an, thoi_gian_dat, ngay_dat, loi_nhan)
+                VALUES ($idkhach_hang, $idban_an, $time, $date , $text)";
         
         // if (empty($name)) {
         //   echo "Name is empty";
