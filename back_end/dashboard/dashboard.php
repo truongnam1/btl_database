@@ -1,5 +1,5 @@
 <?php 
-    //include_once '../back_end/connect.php';
+    include_once '../connect.php';
 
 /**
  * lấy TỔNG SỐ KHÁCH DỰ KIẾN(của tháng này) 
@@ -7,8 +7,8 @@
  * return : tổng số người (số)
  */
 function f0() {
-    include 'connect.php';
-
+    // include 'connect.php';
+    global $conn;
     $count = 0;
     $present = getdate();
     $year = $present['year'];
@@ -25,7 +25,7 @@ function f0() {
     return $count;
 }
 
-//echo f0();
+echo f0();
 
 /**
  * trả về tổng số đơn đặt bàn của tháng hiện tại
@@ -33,7 +33,8 @@ function f0() {
  * return: tổng số đơn tháng này (số)
  */
 function f1 () {
-    include 'connect.php';
+    // include 'connect.php';
+    global $conn;
 
     $count = 0;
     $present = getdate();
@@ -51,14 +52,15 @@ function f1 () {
 
 }
 
-echo f1();
+// echo f1();
 /**
  * trả về tổng số đơn đặt bàn của tháng này ở trạng thái phê duyệt
  * mỗi form đc tính là 1 đơn
  * return: tổng số đơn đã phê duyệt tháng hiện tại (số)
  */
 function f2() {
-    include 'connect.php';
+    // include 'connect.php';
+    global $conn;
 
     $count = 0;
     $present = getdate();
@@ -79,7 +81,8 @@ function f2() {
  * return: tổng số đơn đã phê duyệt tháng hiện tại (số)
  */
 function f3() {
-    include 'connect.php';
+    // include 'connect.php';
+    global $conn;
 
     $count = 0;
     $sql = "SELECT COUNT(*) AS total FROM dat_ban
@@ -97,7 +100,8 @@ function f3() {
  * 
  */
 function f4() {
-    include 'connect.php';
+    // include 'connect.php';
+    global $conn;
     
     $list = array();
     for($i=1 ; $i<=12 ; $i++) {
@@ -115,9 +119,9 @@ function f4() {
     return $list;
 }
 
-// echo "<pre>";
-// print_r(f4());
-// echo "<pre>";
+echo "<pre>";
+print_r(f4());
+echo "<pre>";
 
 
 
