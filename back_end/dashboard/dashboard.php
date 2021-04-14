@@ -17,7 +17,7 @@ function f0() {
     // print_r(getdate());
     // echo $present['mon'] + $present['year'];
     $sql = "SELECT so_nguoi FROM dat_ban
-    WHERE EXTRACT(YEAR FROM ngay_dat) = $year AND EXTRACT(MONTH FROM ngay_dat) = $month";
+            WHERE EXTRACT(YEAR FROM ngay_dat) = $year AND EXTRACT(MONTH FROM ngay_dat) = $month";
     $result = $conn->query($sql);
     while($row = $result->fetch_assoc()) {
         $count += $row["so_nguoi"];
@@ -26,7 +26,7 @@ function f0() {
     return $count;
 }
 
-// echo f0();
+//echo f0();
 
 /**
  * trả về tổng số đơn đặt bàn của tháng hiện tại
@@ -44,7 +44,7 @@ function f1 () {
     // print_r(getdate());
     // echo $present['mon'] + $present['year'];
     $sql = "SELECT COUNT(*) AS total FROM dat_ban
-    WHERE EXTRACT(YEAR FROM ngay_dat) = $year AND EXTRACT(MONTH FROM ngay_dat) = $month";
+            WHERE EXTRACT(YEAR FROM ngay_dat) = $year AND EXTRACT(MONTH FROM ngay_dat) = $month";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $count = $row['total'];
@@ -68,7 +68,7 @@ function f2() {
     $year = $present['year'];
     $month = $present['mon'];
     $sql = "SELECT COUNT(*) AS total FROM dat_ban
-    WHERE EXTRACT(YEAR FROM ngay_dat) = $year AND EXTRACT(MONTH FROM ngay_dat) = $month AND trang_thai = 'phê duyệt'";
+            WHERE EXTRACT(YEAR FROM ngay_dat) = $year AND EXTRACT(MONTH FROM ngay_dat) = $month AND trang_thai = 'phê duyệt'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $count = $row['total'];
@@ -87,7 +87,7 @@ function f3() {
 
     $count = 0;
     $sql = "SELECT COUNT(*) AS total FROM dat_ban
-    WHERE trang_thai = 'chưa xử lý'";
+            WHERE trang_thai = 'chưa xử lý'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $count = $row['total'];
