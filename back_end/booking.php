@@ -1,5 +1,6 @@
 <?php
-    include 'connect.php';
+    // include 'connect.php';
+    include_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/btl_database/back_end/connect.php';
     //insert data into database
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // collect value of input field
@@ -13,6 +14,11 @@
         $date = $_POST['date']; //format chua dung
         $note = $_POST['note'];
         
+        echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
+
+
         //insert to khach_hang
         $sql = "INSERT INTO khach_hang (fullname, email, sdt)
                 VALUES ($name, $email ,$phoneNumber)";

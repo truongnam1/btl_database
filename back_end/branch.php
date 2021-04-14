@@ -1,6 +1,7 @@
 <?php
     function listBranches() {
-        include 'connect.php';
+        // include 'connect.php';
+        include_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/btl_database/back_end/connect.php';
 
         
         //lay ma khu vuc

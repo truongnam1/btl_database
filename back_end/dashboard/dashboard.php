@@ -1,5 +1,6 @@
 <?php 
-    include_once '../connect.php';
+    include_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/btl_database/back_end/connect.php';
+    
 
 /**
  * lấy TỔNG SỐ KHÁCH DỰ KIẾN(của tháng này) 
@@ -25,7 +26,7 @@ function f0() {
     return $count;
 }
 
-echo f0();
+// echo f0();
 
 /**
  * trả về tổng số đơn đặt bàn của tháng hiện tại
@@ -119,9 +120,11 @@ function f4() {
     return $list;
 }
 
-echo "<pre>";
-print_r(f4());
-echo "<pre>";
+
+
+// echo "<pre>";
+// print_r(f4());
+// echo "<pre>";
 
 
 

@@ -146,7 +146,7 @@
             <span>KING BBQ</span>
             <h2>Đặt bàn</h2>
           </div>
-          <form class="" action="" method="post">
+          <form class="" action="../back_end/booking.php" method="post">
             <div class="form-row row">
               <div class="form-group col-md-6">
                 <label for="inputname">Họ và tên</label>
