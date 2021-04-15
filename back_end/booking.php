@@ -56,13 +56,21 @@
     
 
         //insert to dat_ban
+        $present = getdate();
+        $ngay_dat = (string)$present['year'] . ':' . (string)$present['mon'] . ':' . (string)$present['mday'];
         for($i=0 ; $i<count($idban_an) ; $i++) {
-            $sql = "INSERT INTO dat_ban (idkhach_hang, idban_an, thoi_gian_dat, ngay_dat, so_nguoi, loi_nhan, trang_thai)
-                    VALUES ('$idkhach_hang', '$idban_an[$i]', '$time', '$date', '$amountPeople', '$note', 'chưa xử lý')";
+            $sql = "INSERT INTO dat_ban (idkhach_hang, idban_an, thoi_gian_dat, ngay_den, ngay_dat, so_nguoi, loi_nhan, trang_thai)
+                    VALUES ('$idkhach_hang', '$idban_an[$i]', '$time', '$date', '$ngay_dat', '$amountPeople', '$note', 'chưa xử lý')";
             $conn->query($sql);
         }
 
     }
 
-    $conn->close();
+    // echo "<pre>";
+    // print_r(getdate());
+    // echo "<pre>";
+    // $present = getdate();
+    // $ngay_dat = (string)$present['year'] . ':' . (string)$present['mon'] . ':' . (string)$present['mday'];
+    // echo $ngay_dat;
+    // $conn->close();
 ?>
