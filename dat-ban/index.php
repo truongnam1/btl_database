@@ -196,7 +196,7 @@
                   <!-- <option selected disabled hidden value="default">---</option> -->
                   <option disabled hidden value="default">---</option>
                   <?php
-                  for ($i = 2; $i <= 50; $i++) {
+                  for ($i = 2; $i <= 50; $i+=2) {
                     echo "<option>$i</option>";
                   }
                   ?>

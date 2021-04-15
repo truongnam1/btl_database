@@ -1,6 +1,9 @@
 <?php
     // include 'connect.php';
     include_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/btl_database/back_end/connect.php';
+    include 'subsetSum.php';
+
+
     //insert data into database
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // collect value of input field
@@ -13,16 +16,13 @@
         $time = $_POST['time'] . ':00'; 
         $date = $_POST['date']; 
         $note = $_POST['note'];
-        
-        // echo "<pre>";
-        // print_r($_POST);
-        // echo "</pre>";
     
 
         //insert to khach_hang
         $sql = "INSERT INTO khach_hang(fullname, email, sdt)
                 VALUES ('$name', '$email', '$phoneNumber')";
         $conn->query($sql);
+
 
         //idkhach_hang
         $idkhach_hang = $conn->insert_id; //last_id
@@ -41,29 +41,28 @@
         
 
         //idban_available
-        $sql = "SELECT idban_an FROM ban_an
-                WHERE id_chi_nhanh = $idchi_nhanh AND so_luong_ghe BETWEEN $amountPeople AND (2*$amountPeople-1) ";
-        $idban_available = $conn->query($sql);
+        $idban_available  = array();
+        $sql = "SELECT ban_an.idban_an, ban_an.so_luong_ghe FROM ban_an
+        LEFT JOIN dat_ban ON dat_ban.idban_an = ban_an.idban_an
+        WHERE ban_an.id_chi_nhanh = $idchi_nhanh AND (dat_ban.ngay_dat = '$date' OR dat_ban.ngay_dat IS NULL) AND (dat_ban.thoi_gian_dat != '$time' OR dat_ban.thoi_gian_dat IS NULL); ";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $idban_available[$row['idban_an']] = $row['so_luong_ghe'];
+        }
 
 
         //idban_an
-        $idban_an;
-        while($row = $idban_available->fetch_assoc()) {
-            $idban_an = $row["idban_an"];
-            $sql = "SELECT idban_an FROM dat_ban
-                    WHERE ngay_dat = '$date' AND thoi_gian_dat = '$time' AND idban_an = $idban_an";
-            $result = $conn->query($sql);
-            if ($result->num_rows == 0) {
-                //idban khong bi trung
-                break;
-            } 
-        }
+        $idban_an = findIDban($idban_available,$amountPeople);
+    
 
         //insert to dat_ban
-        $sql = "INSERT INTO dat_ban (idkhach_hang, idban_an, thoi_gian_dat, ngay_dat, loi_nhan, trang_thai)
-                VALUES ('$idkhach_hang', '$idban_an', '$time', '$date', '$note', 'chưa xử lý')";
-        $conn->query($sql);
+        for($i=0 ; $i<count($idban_an) ; $i++) {
+            $sql = "INSERT INTO dat_ban (idkhach_hang, idban_an, thoi_gian_dat, ngay_dat, so_nguoi, loi_nhan, trang_thai)
+                    VALUES ('$idkhach_hang', '$idban_an[$i]', '$time', '$date', '$amountPeople', '$note', 'chưa xử lý')";
+            $conn->query($sql);
+        }
 
     }
+
     $conn->close();
 ?>
