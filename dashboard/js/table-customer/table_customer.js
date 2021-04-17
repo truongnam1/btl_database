@@ -20,6 +20,7 @@ function postQueryRowForm(idForm) {
                     if (keyTD != "idForm") {
                         row.append($("<td></td>").text(val));
                     }
+                    // row.append($("<td></td>").text(val));
 
                 });
                 table.row.add(row).draw();
