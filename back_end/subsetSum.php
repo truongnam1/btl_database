@@ -53,7 +53,7 @@
                         goto out_loop;
                     }
                 }
-                out_loop:
+                out_loop:;
             }
             return $result;
         }

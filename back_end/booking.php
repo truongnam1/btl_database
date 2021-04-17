@@ -19,8 +19,10 @@
     
 
         //insert to khach_hang
-        $sql = "INSERT INTO khach_hang(fullname, email, sdt)
-                VALUES ('$name', '$email', '$phoneNumber')";
+        $present = getdate();
+        $ngay_dat = (string)$present['year'] . ':' . (string)$present['mon'] . ':' . (string)$present['mday'];
+        $sql = "INSERT INTO khach_hang(fullname, thoi_gian_den, ngay_den, ngay_dat, so_nguoi, email, sdt, loi_nhan, trang_thai)
+                VALUES ('$name', '$time', '$date', '$ngay_dat', '$amountPeople', '$email', '$phoneNumber', '$note', 'chưa xử lý')";
         $conn->query($sql);
 
 
@@ -44,7 +46,11 @@
         $idban_available  = array();
         $sql = "SELECT ban_an.idban_an, ban_an.so_luong_ghe FROM ban_an
         LEFT JOIN dat_ban ON dat_ban.idban_an = ban_an.idban_an
-        WHERE ban_an.id_chi_nhanh = $idchi_nhanh AND (dat_ban.ngay_dat = '$date' OR dat_ban.ngay_dat IS NULL) AND (dat_ban.thoi_gian_dat != '$time' OR dat_ban.thoi_gian_dat IS NULL); ";
+        LEFT JOIN khach_hang ON khach_hang.idkhach_hang = dat_ban.idkhach_hang
+        WHERE ban_an.id_chi_nhanh = $idchi_nhanh 
+                AND (khach_hang.ngay_den = '$date' OR khach_hang.ngay_den IS NULL) 
+                AND (khach_hang.thoi_gian_den != '$time' OR khach_hang.thoi_gian_den IS NULL)
+        ORDER BY so_luong_ghe; ";
         $result = $conn->query($sql);
         while($row = $result->fetch_assoc()) {
             $idban_available[$row['idban_an']] = $row['so_luong_ghe'];
@@ -53,14 +59,14 @@
 
         //idban_an
         $idban_an = findIDban($idban_available,$amountPeople);
-    
+        // echo '<pre>';
+        // print_r($idban_an);
+        // echo '<pre>';
 
         //insert to dat_ban
-        $present = getdate();
-        $ngay_dat = (string)$present['year'] . ':' . (string)$present['mon'] . ':' . (string)$present['mday'];
         for($i=0 ; $i<count($idban_an) ; $i++) {
-            $sql = "INSERT INTO dat_ban (idkhach_hang, idban_an, thoi_gian_dat, ngay_den, ngay_dat, so_nguoi, loi_nhan, trang_thai)
-                    VALUES ('$idkhach_hang', '$idban_an[$i]', '$time', '$date', '$ngay_dat', '$amountPeople', '$note', 'chưa xử lý')";
+            $sql = "INSERT INTO dat_ban (idkhach_hang, idban_an)
+                    VALUES ('$idkhach_hang', '$idban_an[$i]')";
             $conn->query($sql);
         }
 
