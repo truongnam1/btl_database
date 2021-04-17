@@ -17,7 +17,9 @@ function postQueryRowForm(idForm) {
 
                 var row = $("<tr></ttr>");
                 $.each(rowItem, function(keyTD, val) {
-                    row.append($("<td></td>").text(val));
+                    if (keyTD != "idForm") {
+                        row.append($("<td></td>").text(val));
+                    }
 
                 });
                 table.row.add(row).draw();

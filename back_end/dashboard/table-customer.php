@@ -39,6 +39,7 @@ $demoArray = [
     "idForm" => 1, 
     "fullName" => "nam ",
     "email" => "nam@gmail.com",
+    "amountPeople" => 5,
     "phoneNumber" => "0123456789",
     "branch" => "IPH",
     "tables" => [101102, 101103],
@@ -48,6 +49,9 @@ $demoArray = [
     "status" => "đang chờ phê duyệt1"
 
 ];
+
+
+
 
 
 // cứ tạo mảng như bình thường rồi cuối cùng convert sang json là đc
