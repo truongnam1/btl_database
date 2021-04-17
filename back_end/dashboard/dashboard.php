@@ -16,8 +16,8 @@ function f0() {
     $month = $present['mon'];
     // print_r(getdate());
     // echo $present['mon'] + $present['year'];
-    $sql = "SELECT so_nguoi FROM dat_ban
-            WHERE EXTRACT(YEAR FROM ngay_dat) = $year AND EXTRACT(MONTH FROM ngay_dat) = $month";
+    $sql = "SELECT so_nguoi FROM khach_hang
+            WHERE EXTRACT(YEAR FROM ngay_den) = $year AND EXTRACT(MONTH FROM ngay_den) = $month";
     $result = $conn->query($sql);
     while($row = $result->fetch_assoc()) {
         $count += $row["so_nguoi"];
@@ -43,8 +43,8 @@ function f1 () {
     $month = $present['mon'];
     // print_r(getdate());
     // echo $present['mon'] + $present['year'];
-    $sql = "SELECT COUNT(*) AS total FROM dat_ban
-            WHERE EXTRACT(YEAR FROM ngay_dat) = $year AND EXTRACT(MONTH FROM ngay_dat) = $month";
+    $sql = "SELECT COUNT(*) AS total FROM khach_hang
+            WHERE EXTRACT(YEAR FROM ngay_den) = $year AND EXTRACT(MONTH FROM ngay_den) = $month";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $count = $row['total'];
@@ -67,8 +67,8 @@ function f2() {
     $present = getdate();
     $year = $present['year'];
     $month = $present['mon'];
-    $sql = "SELECT COUNT(*) AS total FROM dat_ban
-            WHERE EXTRACT(YEAR FROM ngay_dat) = $year AND EXTRACT(MONTH FROM ngay_dat) = $month AND trang_thai = 'phê duyệt'";
+    $sql = "SELECT COUNT(*) AS total FROM khach_hang
+            WHERE EXTRACT(YEAR FROM ngay_den) = $year AND EXTRACT(MONTH FROM ngay_den) = $month AND trang_thai = 'phê duyệt'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $count = $row['total'];
@@ -86,7 +86,7 @@ function f3() {
     global $conn;
 
     $count = 0;
-    $sql = "SELECT COUNT(*) AS total FROM dat_ban
+    $sql = "SELECT COUNT(*) AS total FROM khach_hang
             WHERE trang_thai = 'chưa xử lý'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
@@ -108,8 +108,8 @@ function f4() {
     for($i=1 ; $i<=12 ; $i++) {
         $list[$i] = 0;
     }
-    $sql = "SELECT MONTH(ngay_dat) AS month, COUNT(*) AS count 
-            FROM dat_ban
+    $sql = "SELECT MONTH(ngay_den) AS month, COUNT(*) AS count 
+            FROM khach_hang
             GROUP BY month
             ORDER BY month";
     $result = $conn->query($sql);
