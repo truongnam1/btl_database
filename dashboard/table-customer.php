@@ -11,6 +11,9 @@
 
     <title>Table customer</title>
 
+    <!-- js -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -21,6 +24,8 @@
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <!-- custom js -->
+    <script src="./js/table-customer/table_customer.js"></script>
 </head>
 
 <body id="page-top">
@@ -59,9 +64,34 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
-                        <div>
-                            <button class="btn btn-outline-secondary">Cập nhật</button>
-                            <button class="btn btn-outline-secondary">Lưu</button>
+                        <div class="row">
+                            <div class="col-2">
+                                <button class="btn btn-outline-secondary">Lưu các chỉnh sửa</button>
+                            </div>
+                            <div class="d-flex col-10" id="form-query">
+                                <div class="col-3">
+                                    <select name="type-status" id="type-status">
+                                        <option value="allowed">Đơn đã phê duyệt</option>
+                                        <option value="waiting">Đơn đã chưa phê duyệt</option>
+                                        <option value="not allowed">Đơn đã huỷ</option>
+                                        <option value="all">All</option>
+                                    </select>
+                                </div>
+                                <div class="col-5 d-flex">
+
+                                    <p>Từ</p>
+                                    <input type="date" name="dateForm" id="dateForm">
+                                    <p>đến</p>
+                                    <input type="date" name="dateTo" id="dateTo">
+                                </div class="col-3 d-flex">
+                                <!-- <button type="submit" class="btn btn-outline-secondary">Try vấn</button> -->
+                                <div id="btn-query">
+                                    <button class="btn btn-outline-secondary">Truy vấn</button>
+                                </div>
+                            </div>
+                            <div>
+
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -94,7 +124,7 @@
                                             <th>Trạng thái</th>
                                         </tr>
                                     </tfoot>
-                                    <tbody>
+                                    <!-- <tbody>
                                         <tr>
                                             <td>Nam</td>
                                             <td>nam@gmail.com</td>
@@ -107,99 +137,8 @@
                                             <th>không</th>
                                             <th>đang chờ phê duyệt</th>
                                         </tr>
-                                        <tr>
-                                            <td>Hằng</td>
-                                            <td>ha@gmail.com</td>
-                                            <td>0912586475</td>
-                                            <td>5</td>
-                                            <td>vin</td>
-                                            <td>101, 102, 103</td>
-                                            <td>19/04/2021 01:10PM</td>
-                                            <td>13/04/2021</td>
-                                            <th>Which of these options is used to populate the table data
-                                                depends upon how the table is initialised.
-                                                The examples in this section show these four different data source types.
-                                                Which of these options is used to populate the table data depends upon
-                                                how the table is initialised. The examples in this section show these four different data source types.</th>
-                                            <th>đang chờ phê duyệt</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Nam</td>
-                                            <td>nam@gmail.com</td>
-                                            <td>093256875</td>
-                                            <td>10</td>
-                                            <td>IPH</td>
-                                            <td>101, 102, 103</td>
-                                            <td>13/04/2021 9:10PM</td>
-                                            <td>12/04/2021</td>
-                                            <th>không</th>
-                                            <th><select name="" id="">
-                                                    <option value="">đang chờ phê duyệt</option>
-                                                    <option value="">đã phê duyệt</option>
-                                                    <option value="">đã huỷ</option>
-                                                </select></th>
-                                        </tr>
-                                        <tr>
-                                            <td>Nam</td>
-                                            <td>nam@gmail.com</td>
-                                            <td>093256875</td>
-                                            <td>10</td>
-                                            <td>IPH</td>
-                                            <td>101, 102, 103</td>
-                                            <td>13/04/2021 9:10PM</td>
-                                            <td>12/04/2021</td>
-                                            <th>không</th>
-                                            <th>đang chờ phê duyệt</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Nam</td>
-                                            <td>nam@gmail.com</td>
-                                            <td>093256875</td>
-                                            <td>10</td>
-                                            <td>IPH</td>
-                                            <td>101, 102, 103</td>
-                                            <td>13/04/2021 9:10PM</td>
-                                            <td>12/04/2021</td>
-                                            <th>không</th>
-                                            <th>đang chờ phê duyệt</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Nam</td>
-                                            <td>nam@gmail.com</td>
-                                            <td>093256875</td>
-                                            <td>10</td>
-                                            <td>IPH</td>
-                                            <td>101, 102, 103</td>
-                                            <td>13/04/2021 9:10PM</td>
-                                            <td>12/04/2021</td>
-                                            <th>không</th>
-                                            <th>đang chờ phê duyệt</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Nam</td>
-                                            <td>nam@gmail.com</td>
-                                            <td>093256875</td>
-                                            <td>10</td>
-                                            <td>IPH</td>
-                                            <td>101, 102, 103</td>
-                                            <td>13/04/2021 9:10PM</td>
-                                            <td>12/04/2021</td>
-                                            <th>không</th>
-                                            <th>đang chờ phê duyệt</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Nam</td>
-                                            <td>nam@gmail.com</td>
-                                            <td>093256875</td>
-                                            <td>10</td>
-                                            <td>IPH</td>
-                                            <td>101, 102, 103</td>
-                                            <td>13/04/2021 9:10PM</td>
-                                            <td>12/04/2021</td>
-                                            <th>không</th>
-                                            <th>đang chờ phê duyệt</th>
-                                        </tr>
-                                    </tbody>
+                                        
+                                    </tbody> -->
                                 </table>
                             </div>
                         </div>
@@ -266,7 +205,9 @@
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <!-- <script src="js/demo/datatables-demo.js"></script> -->
+    <script src="js/table-customer/datatables-customer.js"></script>
+
 
 </body>
 

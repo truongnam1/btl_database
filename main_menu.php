@@ -9,10 +9,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto" >
         <li class="nav-item active">
-          <a class="nav-link" href="#">Trang chủ<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?php echo $_SERVER['HTTP_HOST'];?>/index_main.php">Trang chủ<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Thực đơn</a>
+          <a class="nav-link" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/btl_database/thuc-don/">Thực đơn</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">đặt hàng</a>
