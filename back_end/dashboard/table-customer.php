@@ -12,7 +12,7 @@
 $demoArrayIdForm = [];
 
 // demo id của form, tương lai là lấy id từ db
-for ($i=0; $i < 3500; $i++) { 
+for ($i=0; $i < 35; $i++) { 
     $demoArrayIdForm[] = $i;
 }
 
@@ -72,10 +72,4 @@ if(isset($_POST["idForm"])) {
 
 }
 
-if(isset($_POST["type-status"])) {
-    // print_r($_POST);
-    echo json_encode($demoArrayIdForm);
-
-
-}
 
