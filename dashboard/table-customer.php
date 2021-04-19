@@ -17,12 +17,14 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> -->
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/table-customer.css">
 
     <!-- custom js -->
     <script src="./js/table-customer/table_customer.js"></script>
@@ -51,6 +53,76 @@
                 ?>
                 <!-- End of Topbar -->
 
+                <!-- The Modal -->
+                <div class="modal" id="infoForm">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h1 class="modal-title">Thông tin đặt bàn</h1>
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="fullName">Họ và tên:</label>
+                                    <input type="text" class="form-control" id="fullName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phoneNumber">Sđt:</label>
+                                    <input type="text" class="form-control" id="phoneNumber">
+                                </div>
+                                <div class="form-group">
+                                    <label for="amountPeople">Số người:</label>
+                                    <input type="text" class="form-control" id="amountPeople">
+                                </div>
+                                <div class="form-group">
+                                    <label for="branch">Chi nhánh:</label>
+                                    <input type="text" class="form-control" id="branch">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tables">Bàn:</label>
+                                    <input type="text" class="form-control" id="tables">
+                                </div>
+                                <div class="form-group">
+                                    <label for="datetimeToCome">Thời gian đến:</label>
+                                    <input type="datetime-local" class="form-control" id="datetimeToCome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dateOrder">Thời gian đặt:</label>
+                                    <input type="date" class="form-control" id="dateOrder">
+                                </div>
+                                <div class="form-group">
+                                    <label for="note">Ghi chú:</label>
+                                    <textarea class="form-control" rows="2" id="note"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">Trạng thái:</label>
+                                    <select name="status" class="custom-select" id="status">
+
+                                        <option value="chưa xử lý">Chưa xử lý</option>
+                                        <option value="đã xử lý">Đã xử lý</option>
+                                        <option value="đã huỷ">Đã huỷ</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-update" data-dismiss="modal" id="btn-update">Cập nhật</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -66,14 +138,16 @@
                         </div>
                         <div class="row">
                             <div class="col-2">
-                                <button class="btn btn-outline-secondary">Lưu các chỉnh sửa</button>
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#infoForm" id="toggle-form-edit">
+                                    Chỉnh sửa
+                                </button>
                             </div>
                             <div class="d-flex col-10" id="form-query">
                                 <div class="col-3">
                                     <select name="type-status" id="type-status">
-                                        <option value="đã xử lý">Đơn đã phê duyệt</option>
-                                        <option value="chưa xử lý">Đơn chưa phê duyệt</option>
-                                        <option value="đã hủy">Đơn đã huỷ</option>
+                                        <option value="đã xử lý">Đã xử lý</option>
+                                        <option value="chưa xử lý">Chưa xử lý</option>
+                                        <option value="đã hủy">Đã hủy</option>
                                         <option value="all">All</option>
                                     </select>
                                 </div>
@@ -85,8 +159,9 @@
                                     <input type="date" name="dateTo" id="dateTo">
                                 </div class="col-3 d-flex">
                                 <!-- <button type="submit" class="btn btn-outline-secondary">Try vấn</button> -->
-                                <div id="btn-query">
-                                    <button class="btn btn-outline-secondary">Truy vấn</button>
+                                <div>
+                                    <button class="btn btn-primary" id="btn-query">
+                                        Truy vấn</button>
                                 </div>
                             </div>
                             <div>
@@ -108,6 +183,7 @@
                                             <th>Thời gian đặt</th>
                                             <th>Ghi chú</th>
                                             <th>Trạng thái</th>
+
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -122,6 +198,7 @@
                                             <th>Thời gian đặt</th>
                                             <th>Ghi chú</th>
                                             <th>Trạng thái</th>
+
                                         </tr>
                                     </tfoot>
                                     <!-- <tbody>

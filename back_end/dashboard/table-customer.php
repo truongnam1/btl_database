@@ -1,7 +1,13 @@
 <?php
     include_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/btl_database/back_end/connect.php';
-    //lay arrayIdForm
+    /**
+     * nếu chỉ có $_POST["type-status"] có dữ liệu, những biến khác trống thì lấy tất cả theo type-status
+     * nếu $_POST["dateForm"] có dữ liệu và $_POST["dateTo"] trống thì lấy từ $_POST["dateForm"] đến ngày hiện tại
+     * nếu $_POST["dateTo"] có dữ liệu và $_POST["dateForm"] trống thì lấy từ đấu đến $_POST["dateTo"]
+     */
+    //lay arrayIdForm, chưa xử lý type-status
     if(isset($_POST["type-status"]) && isset($_POST["dateForm"]) && isset($_POST["dateTo"])) {
+        // print_r($_POST);
         $trang_thai = $_POST["type-status"];
         $dateFrom = $_POST["dateForm"];
         $dateTo = $_POST["dateTo"];
@@ -19,6 +25,20 @@
 
     //query idForm
     if(isset($_POST["idForm"])) {
+        // print_r($_POST);
+        // form mới
+    //     "idForm" => 1, 
+    // "fullName" => "nam ",
+    // "email" => "nam@gmail.com",
+    // "amountPeople" => 5,
+    // "phoneNumber" => "0123456789",
+    // "branch" => "IPH IPHIPHIPHIPHIPHIPHI PHIPHIPHIPH",
+    // "tables" => [101102, 101103],
+    // "timeToCome" => "13:20",
+    // "dateToCome" => "2021-06-29",
+    // "dateOrder" => "2021-04-02",
+    // "note" => "ghiiiiaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaa",
+    // "status" => "đã xử lý"
         $array = [];
         foreach ($_POST["idForm"] as $key => $value) {
             $arrayTemp = array();
@@ -69,4 +89,27 @@
 
     }
 
+    /**
+     * dữ liệu của 1 form sau khi được cập nhật và gửi về server
+     * công việc: cập nhật lại db theo dữ liệu form gửi về
+     */
+    if (isset($_POST["update-row"])) {
+
+        print_r($_POST);
+        // trong ($_POST["update-row"] là 1 mảng chứa
+         //     "idForm" => 1, 
+    // "fullName" => "nam ",
+    // "email" => "nam@gmail.com",
+    // "amountPeople" => 5,
+    // "phoneNumber" => "0123456789",
+    // "branch" => "IPH IP",
+    // "tables" => [101102, 101103],
+    // "timeToCome" => "13:20",
+    // "dateToCome" => "2021-06-29",
+    // "dateOrder" => "2021-04-02",
+    // "note" => "ghiiiiaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaa",
+    // "status" => "đã xử lý"
+
+
+    }
 
