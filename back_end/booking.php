@@ -45,12 +45,12 @@
         //idban_available
         $idban_available  = array();
         $sql = "SELECT ban_an.idban_an, ban_an.so_luong_ghe FROM ban_an
-        LEFT JOIN dat_ban ON dat_ban.idban_an = ban_an.idban_an
-        LEFT JOIN khach_hang ON khach_hang.idkhach_hang = dat_ban.idkhach_hang
-        WHERE ban_an.id_chi_nhanh = $idchi_nhanh 
+                LEFT JOIN dat_ban ON dat_ban.idban_an = ban_an.idban_an
+                LEFT JOIN khach_hang ON khach_hang.idkhach_hang = dat_ban.idkhach_hang
+                WHERE ban_an.id_chi_nhanh = $idchi_nhanh 
                 AND (khach_hang.ngay_den = '$date' OR khach_hang.ngay_den IS NULL) 
                 AND (khach_hang.thoi_gian_den != '$time' OR khach_hang.thoi_gian_den IS NULL)
-        ORDER BY so_luong_ghe; ";
+                ORDER BY so_luong_ghe; ";
         $result = $conn->query($sql);
         while($row = $result->fetch_assoc()) {
             $idban_available[$row['idban_an']] = $row['so_luong_ghe'];

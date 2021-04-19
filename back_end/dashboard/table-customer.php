@@ -1,75 +1,68 @@
 <?php
-
-
-/**
- * sau khi ấn "truy vấn",dữ liệu đẩy lên bằng post, post sẽ có 3 key: dateForm, dateTo, type-status.
- * Xử lý dữ liệu và trả về 1 json id form
- * convert từ array sang json bằng cách json_encode($demoArrayIdForm);
- * 
- */
-
- // demo id của form
-$demoArrayIdForm = [];
-
-// demo id của form, tương lai là lấy id từ db
-for ($i=0; $i < 35; $i++) { 
-    $demoArrayIdForm[] = $i;
-}
-
-
-if(isset($_POST["type-status"])) {
-    // trả dữ liệu về
-    echo json_encode($demoArrayIdForm);
-
-
-}
-
-
-
-
-/**
- * dữ liệu đẩy lên bằng post, post sẽ có 1 key là idForm, $_POST["idForm"] là 1 array idForm
- * dữ liệu cần trả về là 1 json
- * 
- */
-
-
-$demoArray = [
-    
-    "idForm" => 1, 
-    "fullName" => "nam ",
-    "email" => "nam@gmail.com",
-    "amountPeople" => 5,
-    "phoneNumber" => "0123456789",
-    "branch" => "IPH",
-    "tables" => [101102, 101103],
-    "timestampComeTo" => "2021-04-03 20:20PM",
-    "dateOrder" => "2021-04-02",
-    "note" => "ghiiii",
-    "status" => "đang chờ phê duyệt1"
-
-];
-
-
-
-
-
-// cứ tạo mảng như bình thường rồi cuối cùng convert sang json là đc
-if(isset($_POST["idForm"])) {
-    $array = [];
-    // print_r($_POST["idForm"]);
-    foreach ($_POST["idForm"] as $key => $value) {
-        $demoArrayTemp = $demoArray;
-    
-    // cái dòng này để test tên thôi chứ dữ liệu lấy từ db
-    $demoArrayTemp["fullName"] = $demoArray["fullName"] . $value;
-
-
-    $array[] = $demoArrayTemp;
+    include_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/btl_database/back_end/connect.php';
+    //lay arrayIdForm
+    if(isset($_POST["type-status"]) && isset($_POST["dateForm"]) && isset($_POST["dateTo"])) {
+        print_r($_POST);
+        $trang_thai = $_POST["type-status"];
+        $dateFrom = $_POST["dateForm"];
+        $dateTo = $_POST["dateTo"];
+        $ArrayIdForm = array();
+        $sql = "SELECT idkhach_hang FROM khach_hang
+                WHERE ngay_den BETWEEN '$dateFrom' AND '$dateTo'";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()) {
+            $ArrayIdForm[] = $row['idkhach_hang'];
+        }
+        echo json_encode($ArrayIdForm);
     }
-    // chuyển thành dạng json
-    echo json_encode($array);
 
-}
+
+    //query idForm
+    if(isset($_POST["idForm"])) {
+        $array = [];
+        
+        foreach ($_POST["idForm"] as $key => $value) {
+            $arrayTemp = array();
+            $idban_an ;
+
+            //
+            $sql = "SELECT fullname, email, so_nguoi, sdt, thoi_gian_den, ngay_den, loi_nhan, trang_thai 
+                    FROM khach_hang
+                    WHERE idkhach_hang = $value";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $arrayTemp["fullName"] = $row["fullName"] . $value;
+            $arrayTemp["email"] = $row["email"];
+            $arrayTemp["amountPeople"] = $row["so_nguoi"];
+            $arrayTemp["phoneNumber"] = $row["sdt"];
+            $arrayTemp["timestampComeTo"] = $row["ngay_den"] . ' ' . $row["thoi_gian_den"];
+            $arrayTemp["note"] = $row["loi_nhan"];
+            $arrayTemp["status"] = $row["trang_thai"];
+
+            //
+            $sql = "SELECT idban_an FROM dat_ban
+                    WHERE idkhach_hang = $value";
+            $result = $conn->query($sql);
+            $arrayTemp["tables"] = array();
+            while($row = $result->fetch_assoc()) {
+                $arrayTemp["tables"][] = $row['idban_an'];
+                $idban_an = $row['idban_an'];
+            }
+
+            // 
+            $sql = "SELECT chi_nhanh.ten_chi_nhanh FROM chi_nhanh
+                    INNER JOIN ban_an ON ban_an.idchi_nhanh = chi_nhanh.idchi_nhanh
+                    WHERE ban_an.idban_an = $idban_an";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $arrayTemp["branch"] = $row['ten_chi_nhanh'];
+
+            //
+            $array[] = $arrayTemp;
+        }
+        
+        echo json_encode($array);
+
+    }
 
 

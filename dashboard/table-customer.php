@@ -71,9 +71,9 @@
                             <div class="d-flex col-10" id="form-query">
                                 <div class="col-3">
                                     <select name="type-status" id="type-status">
-                                        <option value="allowed">Đơn đã phê duyệt</option>
-                                        <option value="waiting">Đơn đã chưa phê duyệt</option>
-                                        <option value="not allowed">Đơn đã huỷ</option>
+                                        <option value="đã xử lý">Đơn đã phê duyệt</option>
+                                        <option value="chưa xử lý">Đơn chưa phê duyệt</option>
+                                        <option value="đã hủy">Đơn đã huỷ</option>
                                         <option value="all">All</option>
                                     </select>
                                 </div>
