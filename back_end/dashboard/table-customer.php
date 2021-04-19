@@ -2,10 +2,10 @@
     include_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/btl_database/back_end/connect.php';
     //lay arrayIdForm
     if(isset($_POST["type-status"]) && isset($_POST["dateForm"]) && isset($_POST["dateTo"])) {
-        print_r($_POST);
         $trang_thai = $_POST["type-status"];
         $dateFrom = $_POST["dateForm"];
         $dateTo = $_POST["dateTo"];
+        //echo $dateFrom . " " . $dateTo ;
         $ArrayIdForm = array();
         $sql = "SELECT idkhach_hang FROM khach_hang
                 WHERE ngay_den BETWEEN '$dateFrom' AND '$dateTo'";
@@ -20,24 +20,28 @@
     //query idForm
     if(isset($_POST["idForm"])) {
         $array = [];
-        
         foreach ($_POST["idForm"] as $key => $value) {
             $arrayTemp = array();
-            $idban_an ;
-
+            $idban_an;
+            //echo " value: " . $value;
+            $value = (int)$value;
+            //$value = 34;
             //
-            $sql = "SELECT fullname, email, so_nguoi, sdt, thoi_gian_den, ngay_den, loi_nhan, trang_thai 
+            $sql = "SELECT fullname, email, so_nguoi, sdt, thoi_gian_den, ngay_den, ngay_dat, loi_nhan, trang_thai 
                     FROM khach_hang
                     WHERE idkhach_hang = $value";
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
-            $arrayTemp["fullName"] = $row["fullName"] . $value;
+            $arrayTemp["idForm"] = $value;
+            $arrayTemp["fullName"] = $row["fullname"] . " $value";
             $arrayTemp["email"] = $row["email"];
             $arrayTemp["amountPeople"] = $row["so_nguoi"];
             $arrayTemp["phoneNumber"] = $row["sdt"];
             $arrayTemp["timestampComeTo"] = $row["ngay_den"] . ' ' . $row["thoi_gian_den"];
             $arrayTemp["note"] = $row["loi_nhan"];
             $arrayTemp["status"] = $row["trang_thai"];
+            $arrayTemp["dateOrder"] = $row["ngay_dat"];
+
 
             //
             $sql = "SELECT idban_an FROM dat_ban
@@ -48,7 +52,7 @@
                 $arrayTemp["tables"][] = $row['idban_an'];
                 $idban_an = $row['idban_an'];
             }
-
+            
             // 
             $sql = "SELECT chi_nhanh.ten_chi_nhanh FROM chi_nhanh
                     INNER JOIN ban_an ON ban_an.idchi_nhanh = chi_nhanh.idchi_nhanh
