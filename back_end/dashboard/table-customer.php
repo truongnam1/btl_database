@@ -5,47 +5,56 @@
      * nếu $_POST["dateForm"] có dữ liệu và $_POST["dateTo"] trống thì lấy từ $_POST["dateForm"] đến ngày hiện tại
      * nếu $_POST["dateTo"] có dữ liệu và $_POST["dateForm"] trống thì lấy từ đấu đến $_POST["dateTo"]
      */
-    //lay arrayIdForm, chưa xử lý type-status
-    if(isset($_POST["type-status"]) && isset($_POST["dateForm"]) && isset($_POST["dateTo"])) {
-        // print_r($_POST);
+    //lay arrayIdForm
+    $sql;
+    if(isset($_POST["type-status"]) && $_POST["type-status"] == 'all') {
+        $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang";
+
+    } elseif(isset($_POST["type-status"]) && !empty($_POST["dateForm"]) && !empty($_POST["dateTo"])) {
         $trang_thai = $_POST["type-status"];
         $dateFrom = $_POST["dateForm"];
         $dateTo = $_POST["dateTo"];
-        //echo $dateFrom . " " . $dateTo ;
+        $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
+                WHERE ngay_den BETWEEN '$dateFrom' AND '$dateTo' AND trang_thai = '$trang_thai'";
+
+    } elseif(isset($_POST["type-status"]) && empty($_POST["dateForm"]) && !empty($_POST["dateTo"])) {
+        $trang_thai = $_POST["type-status"];
+        $dateTo = $_POST["dateTo"];
+        $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
+                WHERE ngay_den <= '$dateTo' AND trang_thai = '$trang_thai'";
+
+    } elseif(isset($_POST["type-status"]) && !empty($_POST["dateForm"]) && empty($_POST["dateTo"])) {
+        $trang_thai = $_POST["type-status"];
+        $dateFrom = $_POST["dateForm"];
+        $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
+                WHERE ngay_den >= '$dateFrom' AND trang_thai = '$trang_thai'";
+    } elseif(isset($_POST["type-status"])) {
+        $trang_thai = $_POST["type-status"];
+        $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
+                            WHERE trang_thai = '$trang_thai'";
+    }
+    
+    if(isset($_POST["type-status"])) {
         $ArrayIdForm = array();
-        $sql = "SELECT idkhach_hang FROM khach_hang
-                WHERE ngay_den BETWEEN '$dateFrom' AND '$dateTo'";
-        $result = $conn->query($sql);
+        $result = $conn->query($GLOBALS['sql']);
         while($row = $result->fetch_assoc()) {
             $ArrayIdForm[] = $row['idkhach_hang'];
         }
         echo json_encode($ArrayIdForm);
     }
+    
+
 
 
     //query idForm
     if(isset($_POST["idForm"])) {
-        // print_r($_POST);
-        // form mới
-    //     "idForm" => 1, 
-    // "fullName" => "nam ",
-    // "email" => "nam@gmail.com",
-    // "amountPeople" => 5,
-    // "phoneNumber" => "0123456789",
-    // "branch" => "IPH IPHIPHIPHIPHIPHIPHI PHIPHIPHIPH",
-    // "tables" => [101102, 101103],
-    // "timeToCome" => "13:20",
-    // "dateToCome" => "2021-06-29",
-    // "dateOrder" => "2021-04-02",
-    // "note" => "ghiiiiaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaa",
-    // "status" => "đã xử lý"
-        $array = [];
+        $array = array();
         foreach ($_POST["idForm"] as $key => $value) {
             $arrayTemp = array();
             $idban_an;
-            //echo " value: " . $value;
             $value = (int)$value;
-            //$value = 34;
+
+        
             //
             $sql = "SELECT fullname, email, so_nguoi, sdt, thoi_gian_den, ngay_den, ngay_dat, loi_nhan, trang_thai 
                     FROM khach_hang
@@ -95,7 +104,7 @@
      */
     if (isset($_POST["update-row"])) {
 
-        print_r($_POST);
+        //print_r($_POST["update-row"]);
         // trong ($_POST["update-row"] là 1 mảng chứa
          //     "idForm" => 1, 
     // "fullName" => "nam ",
@@ -109,7 +118,43 @@
     // "dateOrder" => "2021-04-02",
     // "note" => "ghiiiiaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaa",
     // "status" => "đã xử lý"
+        $idkhach_hang = $_POST["update-row"]["idForm"];
+        $fullName = $_POST["update-row"]["fullName"];
+        $email = $_POST["update-row"]["email"];
+        $amountPeople = $_POST["update-row"]["amountPeople"];
+        $phoneNumber = $_POST["update-row"]["phoneNumber"];
+        $branch = $_POST["update-row"]["branch"];
+        $tables = $_POST["update-row"]["tables"];
+        $timestampComeTo = $_POST["update-row"]["timestampComeTo"];
+        $dateToCome = substr($timestampComeTo,0,10);
+        $timeToCome = substr($timestampComeTo,11,8);
+        $dateOrder = $_POST["update-row"]["dateOrder"];
+        $note = $_POST["update-row"]["note"];
+        $status = $_POST["update-row"]["status"];
+        print_r($tables);
+        //
+        $sql = "UPDATE khach_hang 
+                SET fullName = '$fullName', 
+                    thoi_gian_den = '$timeToCome', 
+                    ngay_den = '$dateToCome',
+                    ngay_dat = '$dateOrder',
+                    so_nguoi = '$amountPeople',
+                    email = '$email',
+                    sdt = $phoneNumber,
+                    loi_nhan = '$note',
+                    trang_thai = '$status'
+                WHERE idkhach_hang = $idkhach_hang;";
+        $conn->query($sql);
 
-
+        //
+        $sql = "DELETE FROM dat_ban WHERE idkhach_hang = $idkhach_hang;";
+        $conn->query($sql);
+        if(count($tables)>0) {
+            foreach($tables as $value) {
+                $sql = "INSERT INTO dat_ban (idkhach_hang, idban_an) 
+                        VALUES ($idkhach_hang, $value);";
+                $conn->query($sql);
+            }
+        }
     }
 

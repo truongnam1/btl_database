@@ -47,7 +47,7 @@
         $sql = "SELECT ban_an.idban_an, ban_an.so_luong_ghe FROM ban_an
                 LEFT JOIN dat_ban ON dat_ban.idban_an = ban_an.idban_an
                 LEFT JOIN khach_hang ON khach_hang.idkhach_hang = dat_ban.idkhach_hang
-                WHERE ban_an.id_chi_nhanh = $idchi_nhanh 
+                WHERE ban_an.idchi_nhanh = $idchi_nhanh 
                 AND (khach_hang.ngay_den = '$date' OR khach_hang.ngay_den IS NULL) 
                 AND (khach_hang.thoi_gian_den != '$time' OR khach_hang.thoi_gian_den IS NULL)
                 ORDER BY so_luong_ghe; ";
@@ -78,5 +78,5 @@
     // $present = getdate();
     // $ngay_dat = (string)$present['year'] . ':' . (string)$present['mon'] . ':' . (string)$present['mday'];
     // echo $ngay_dat;
-    // $conn->close();
+    $conn->close();
 ?>
