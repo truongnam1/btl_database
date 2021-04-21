@@ -84,13 +84,16 @@
             }
             
             // 
-            $sql = "SELECT chi_nhanh.ten_chi_nhanh FROM chi_nhanh
-                    INNER JOIN ban_an ON ban_an.idchi_nhanh = chi_nhanh.idchi_nhanh
-                    WHERE ban_an.idban_an = $idban_an";
-            $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
-            $arrayTemp["branch"] = $row['ten_chi_nhanh'];
-
+            if ($result->num_rows > 0) {
+                $sql = "SELECT chi_nhanh.ten_chi_nhanh FROM chi_nhanh
+                        INNER JOIN ban_an ON ban_an.idchi_nhanh = chi_nhanh.idchi_nhanh
+                        WHERE ban_an.idban_an = $idban_an";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+                $arrayTemp["branch"] = $row['ten_chi_nhanh'];
+            } else {
+                $arrayTemp["branch"] = '';
+            }
             //
             $array[] = $arrayTemp;
         }
