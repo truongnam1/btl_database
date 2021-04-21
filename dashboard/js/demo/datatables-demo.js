@@ -1,7 +1,7 @@
 // Call the dataTables jQuery plugin
-$(document).ready(function() {
-    $('#dataTable').DataTable({
-        autoFill: true
-    });
+// $(document).ready(function() {
+//     $('#dataTable').DataTable({
+//         autoFill: true
+//     });
 
-});
+// });

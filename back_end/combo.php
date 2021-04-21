@@ -1,6 +1,6 @@
 <?php
     function combo_id_Price() {
-        include 'connect.php';
+        include_once 'connect.php';
 
         $list_thuc_don = array();
         $sql = "SELECT idthuc_don,ten_thuc_don FROM thuc_don";

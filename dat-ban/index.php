@@ -205,7 +205,7 @@
               <div class="form-group col-md-4">
 
                 <label for="inputTime">Chọn giờ</label>
-                <input type="time" id="inputTime" class="form-control" name="time" required>
+                <input type="time" id="inputTime" class="form-control" name="time" step="1200" min="08:00" max="21:00" required>
 
               </div>
               <div class="form-group col-md-5">

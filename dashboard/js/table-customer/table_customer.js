@@ -57,7 +57,6 @@ function postQueryArrayIdForm() {
 
         }
     });
-    return true;
 }
 
 function setDataFormCustomer(data) {
@@ -71,6 +70,7 @@ function setDataFormCustomer(data) {
     // 2018-06-12 11:30PM
     // 2018-06-12T18:30"
     $("#datetimeToCome").attr("value", data.dateToCome + "T" + data.timeToCome);
+    console.log(data.dateToCome + "T" + data.timeToCome)
     $("#dateOrder").val(data.dateOrder);
     $("#note").val(data.note);
     $("#status option").each(function(index, val) {
@@ -148,7 +148,7 @@ $(document).ready(function() {
 
     $(document).ajaxStart(function() {
         $("#btn-query").addClass("disabled");
-        $("#btn-query").html('<span class="spinner-border spinner-border-sm"></span>Loading');
+        $("#btn-query").html('<span class="spinner-border spinner-border-sm"></span> Loading');
     });
 
     $(document).ajaxComplete(function() {
@@ -189,6 +189,7 @@ $(document).ready(function() {
     });
 
     $("#btn-query").click(function() {
+        $("#toggle-form-edit").prop("disabled", true);
         dataForm = {
             dateForm: $("#dateForm").val(),
             dateTo: $("#dateTo").val(),

@@ -1,3 +1,7 @@
+<?php
+include_once '../back_end/dashboard/html-table-dish.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +15,7 @@
 
     <title>Table dish</title>
 
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -20,6 +25,10 @@
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="./css/table-dish.css">
 
 </head>
 
@@ -46,6 +55,65 @@
                 ?>
                 <!-- End of Topbar -->
 
+                <div class="modal" id="info-item-dish">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h1 class="modal-title">Thông tin món ăn</h1>
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body" id="form-dish">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="dish-name">Tên món ăn:</label>
+                                        <input name="dish-name" type="text" class="form-control" id="dish-name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="concept-name">Loại concept:</label>
+                                        <select name="concept-name" class="custom-select" id="concept-name">
+                                            <?php
+                                            echo htmlOptionConcept();
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="combo-name">Loại combo:</label>
+                                        <select name="combo-name" class="custom-select" id="combo-name">
+                                            <?php
+                                            echo htmlOptionCombo();
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="describe">Mô tả:</label>
+                                        <textarea name="describe" class="form-control" rows="2" id="describe"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="image-link">Link ảnh:</label>
+                                        <input name="image-link" type="text" class="form-control" id="image-link">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dish-price">Giá:</label>
+                                        <input name="dish-price" type="text" class="form-control" id="dish-price">
+                                    </div>
+                                </form>
+
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary btn-update-dish" data-dismiss="modal" id="btn-update-dish">Cập nhật</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -60,13 +128,14 @@
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
                         <div>
-                            <button class="btn btn-outline-primary">Chỉnh sửa</button>
-                            <button class="btn btn-outline-primary">Cập nhật</button>
-                            <button class="btn btn-outline-primary">Lưu</button>
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#info-item-dish" id="btn-toggle-edit">
+                                Chỉnh sửa
+                            </button>
+                            <button class="btn btn-outline-primary" id="btn-update-table">Cập nhật</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="data-table-dish" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Tên món ăn</th>
@@ -74,6 +143,7 @@
                                             <th>Loại combo</th>
                                             <th>Mô tả</th>
                                             <th>Link ảnh</th>
+                                            <th>Giá</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -83,9 +153,10 @@
                                             <th>Loại combo</th>
                                             <th>Mô tả</th>
                                             <th>Link ảnh</th>
+                                            <th>Giá</th>
                                         </tr>
                                     </tfoot>
-                                    <tbody>
+                                    <!-- <tbody>
                                         <tr>
                                             <td>Đùi gà sốt BBQ</td>
                                             <td>king bbg bufet</td>
@@ -94,26 +165,10 @@
                                             <td>https://vcdn-dulich.vnecdn.net/2020/09/04/1-Meo-chup-anh-dep-khi-di-bien-9310-1599219010.jpg</td>
 
                                         </tr>
-                                        <tr>
-                                            <td><input type="text" value="Đùi gà sốt BBQ"></td>
-
-                                            <td>
-                                                <select name="" id="">
-                                                    <option value="">king bbg bufet</option>
-                                                    <option value="">king bbg alanticarle</option>
-                                                </select>
-                                            </td>
-                                            <td><select name="" id="">
-                                                    <option value="">king bbg bufet 299k</option>
-                                                    <option value="">king bbg bufet 399k</option>
-                                                </select>
-                                            </td>
-                                            <td><input type="text" value="ngon"></td>
-                                            <td><input type="url" value="https://vcdn-dulich.vnecdn.net/2020/09/04/1-Meo-chup-anh-dep-khi-di-bien-9310-1599219010.jpg"></td>
-                                        </tr>
+                                        
 
 
-                                    </tbody>
+                                    </tbody> -->
                                 </table>
                             </div>
                         </div>
@@ -180,7 +235,11 @@
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <!-- <script src="js/demo/datatables-demo.js"></script> -->
+
+    <!-- custom js -->
+
+    <script src="./js/table-dish/table-dish.js"></script>
 
 </body>
 

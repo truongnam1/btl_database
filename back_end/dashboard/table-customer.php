@@ -62,11 +62,13 @@
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
             $arrayTemp["idForm"] = $value;
-            $arrayTemp["fullName"] = $row["fullname"] . " $value";
+            $arrayTemp["fullName"] = $row["fullname"];
             $arrayTemp["email"] = $row["email"];
             $arrayTemp["amountPeople"] = $row["so_nguoi"];
             $arrayTemp["phoneNumber"] = $row["sdt"];
-            $arrayTemp["timestampComeTo"] = $row["ngay_den"] . ' ' . $row["thoi_gian_den"];
+            // $arrayTemp["timestampComeTo"] = $row["ngay_den"] . ' ' . $row["thoi_gian_den"];
+            $arrayTemp["timeToCome"] = $row["thoi_gian_den"];
+            $arrayTemp["dateToCome"] = $row["ngay_den"];
             $arrayTemp["note"] = $row["loi_nhan"];
             $arrayTemp["status"] = $row["trang_thai"];
             $arrayTemp["dateOrder"] = $row["ngay_dat"];
