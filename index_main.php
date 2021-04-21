@@ -2,7 +2,6 @@
 <html lang="vi">
 
 <head>
-  <title>Title</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -90,8 +89,8 @@
       <div class="row banner-menu">
         <div class="row item-menu-img">
           <div class="col-md-4 item-menu-img1"><img src="./assets/img/banner-menu-1-1.png" alt=""></div>
-          <div class="col-md-4 item-menu-img2"><img src="./assets/img/banner-menu-3-1.png" alt=""></div>
-          <div class="col-md-4 item-menu-img3"><img src="./assets/img/banner-menu-2-1.png" alt=""></div>
+          <div class="col-md-4 item-menu-img2"><img src="./assets/img/banner-menu-1-3.png" alt=""></div>
+          <div class="col-md-4 item-menu-img3"><img src="./assets/img/banner-menu-1-2.png" alt=""></div>
         </div>
         <div class="text-banner">
           <span>Menu</span>
@@ -123,7 +122,7 @@
         <div class="col-md-6 text-article" id="text-menu-content">
           <p class="title-text">Menu</p>
 
-          <p class="content-text">Menu KingBBQ đem đến cho khách hàng hơn 200 món ăn, được chắt lọc từ Tinh hoa ẩm thực Hàn Quốc.
+          <p class="content-text">Menu King BBQ đem đến cho khách hàng hơn 200 món ăn, được chắt lọc từ Tinh hoa ẩm thực Hàn Quốc.
             Tất cả được chính đầu bếp Hàn Quốc chế biến, khéo léo kết hợp
             trong nhiều combo và set ăn hấp dẫn của King BBQ Alacart và vô vàn món ngon không giới hạn từ King BBQ Buffet</p>
           <button class="button-text">thực đơn</button>
@@ -137,7 +136,7 @@
         <!-- <img src="assets\img\nha-hang-king-bbq-1.jpg" alt="" class="img-banner"> -->
         <div class="border-before"></div>
         <div class="text-banner">
-          <span>restaurant</span>
+          <span>Restaurant</span>
           <h3>NHÀ HÀNG KING BBQ</h3>
         </div>
         <div class="border-after"></div>

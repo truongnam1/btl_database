@@ -50,7 +50,7 @@
             $tempDataDish["idDish"] = $value;
             $tempDataDish["dishName"] = $row["ten_mon_an"];
             $tempDataDish["conceptName"] = $row["ten_thuc_don"];
-            $tempDataDish["discribe"] = $row["mo_ta"];
+            $tempDataDish["describe"] = $row["mo_ta"];
             $tempDataDish["imageLink"] = $row["link_image"];
             if($row["idthuc_don"] == 1) {
                 $tempDataDish["price"] = '';
