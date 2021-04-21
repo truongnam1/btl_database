@@ -66,7 +66,6 @@
             $arrayTemp["email"] = $row["email"];
             $arrayTemp["amountPeople"] = $row["so_nguoi"];
             $arrayTemp["phoneNumber"] = $row["sdt"];
-            // $arrayTemp["timestampComeTo"] = $row["ngay_den"] . ' ' . $row["thoi_gian_den"];
             $arrayTemp["timeToCome"] = $row["thoi_gian_den"];
             $arrayTemp["dateToCome"] = $row["ngay_den"];
             $arrayTemp["note"] = $row["loi_nhan"];
@@ -105,21 +104,7 @@
      * công việc: cập nhật lại db theo dữ liệu form gửi về
      */
     if (isset($_POST["update-row"])) {
-
-        //print_r($_POST["update-row"]);
-        // trong ($_POST["update-row"] là 1 mảng chứa
-         //     "idForm" => 1, 
-    // "fullName" => "nam ",
-    // "email" => "nam@gmail.com",
-    // "amountPeople" => 5,
-    // "phoneNumber" => "0123456789",
-    // "branch" => "IPH IP",
-    // "tables" => [101102, 101103],
-    // "timeToCome" => "13:20",
-    // "dateToCome" => "2021-06-29",
-    // "dateOrder" => "2021-04-02",
-    // "note" => "ghiiiiaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaa",
-    // "status" => "đã xử lý"
+        //
         $idkhach_hang = $_POST["update-row"]["idForm"];
         $fullName = $_POST["update-row"]["fullName"];
         $email = $_POST["update-row"]["email"];
@@ -127,13 +112,12 @@
         $phoneNumber = $_POST["update-row"]["phoneNumber"];
         $branch = $_POST["update-row"]["branch"];
         $tables = $_POST["update-row"]["tables"];
-        $timestampComeTo = $_POST["update-row"]["timestampComeTo"];
-        $dateToCome = substr($timestampComeTo,0,10);
-        $timeToCome = substr($timestampComeTo,11,8);
+        $dateToCome = $_POST["update-row"]["dateToCome"];
+        $timeToCome = $_POST["update-row"]["timeToCome"];
         $dateOrder = $_POST["update-row"]["dateOrder"];
         $note = $_POST["update-row"]["note"];
         $status = $_POST["update-row"]["status"];
-        print_r($tables);
+
         //
         $sql = "UPDATE khach_hang 
                 SET fullName = '$fullName', 
@@ -151,7 +135,7 @@
         //
         $sql = "DELETE FROM dat_ban WHERE idkhach_hang = $idkhach_hang;";
         $conn->query($sql);
-        if(count($tables)>0) {
+        if(count($tables)>0 && $status != 'đã huỷ') {
             foreach($tables as $value) {
                 $sql = "INSERT INTO dat_ban (idkhach_hang, idban_an) 
                         VALUES ($idkhach_hang, $value);";

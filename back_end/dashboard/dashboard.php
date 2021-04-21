@@ -68,7 +68,7 @@ function f2() {
     $year = $present['year'];
     $month = $present['mon'];
     $sql = "SELECT COUNT(*) AS total FROM khach_hang
-            WHERE EXTRACT(YEAR FROM ngay_den) = $year AND EXTRACT(MONTH FROM ngay_den) = $month AND trang_thai = 'phê duyệt'";
+            WHERE EXTRACT(YEAR FROM ngay_den) = $year AND EXTRACT(MONTH FROM ngay_den) = $month AND trang_thai = 'đã xử lý'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $count = $row['total'];
