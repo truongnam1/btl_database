@@ -68,14 +68,16 @@
 
 
     function nameConcept() {
+        //include 'connect.php';
+
+        
         $array = [
-            0 => "King BBQ Buffet",
-            1 => "King BBQ Alacarte"
+            1 => "King BBQ Buffet",
+            2 => "King BBQ Alacarte"
         ];
-
         return $array;
-
     }
 
+    //print_r(nameConcept());
 
 ?>
