@@ -20,6 +20,7 @@ include_once '../back_end/dashboard/html-table-dish.php';
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -78,14 +79,16 @@ include_once '../back_end/dashboard/html-table-dish.php';
                                             <?php
                                             echo htmlOptionConcept();
                                             ?>
+                                            
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="combo-name">Loại combo:</label>
-                                        <select name="combo-name" class="custom-select" id="combo-name">
+                                        <select name="combo-name" data-style="bg-white rounded-pill px-4 py-3 shadow-sm " class="selectpicker w-100" id="combo-name" multiple required>
                                             <?php
                                             echo htmlOptionCombo();
                                             ?>
+                                            <!-- <option value="1" selected>test</option> -->
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -226,6 +229,9 @@ include_once '../back_end/dashboard/html-table-dish.php';
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>

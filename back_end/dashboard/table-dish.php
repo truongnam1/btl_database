@@ -69,7 +69,7 @@
                     $tempDataDish["comboName"][] = $row['name_combo'];
                 }
             } else {
-                $tempDataDish["comboName"] = 'no';
+                $tempDataDish["comboName"][] = 'no';
             }
             //
             $arrayDataDish[] = $tempDataDish;
@@ -146,9 +146,9 @@
 
 
     if(isset($_POST["updateDish"])) {
-        // echo "<pre>";
-        // print_r($_POST["updateDish"]);
-        // echo "</pre>";
+        echo "<pre>";
+        print_r($_POST["updateDish"]);
+        echo "</pre>";
 
         echo json_encode($formDish);
     }

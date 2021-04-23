@@ -27,7 +27,11 @@ function htmlOptionCombo() {
     foreach ($listCombo as $nameConcept => $listIdCombo) {
         foreach ($listIdCombo as $id => $value) {
             $html = $html . '<option code="'.$nameConcept.'" " value="' .$id. '">' . $value["name_combo"] . '</option>';
+
+            // $html = $html . '<option code="'.$nameConcept.'" " value="' .$id. '">'.'<input type="checkbox" class="form-check-input" value="">' . $value["name_combo"] . '</option>';
+
         }
+        // <input type="checkbox" class="form-check-input" value="">Option 2
     }
     $html = $html . '<option code="no" " value="no">không</option>;';
     return $html;

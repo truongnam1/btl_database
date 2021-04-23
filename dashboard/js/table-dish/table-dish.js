@@ -49,7 +49,7 @@ function postQueryArrayIdDish() {
             }
 
             // cái này để chia nhỏ dữ liệu post lên, nhiều quá post bị lỗi
-            var arrayID = chunkArray(JSON.parse(result), 100);
+            var arrayID = chunkArray(JSON.parse(result), 4);
             // console.log(arrayID);
             // console.log(JSON.parse(result).length);
             $.each(arrayID, function(key, idDish) {
@@ -70,17 +70,35 @@ function setDataFormDish(data) {
         }
     })
 
-    if (data.comboName == "no") {
-        $("#combo-name option[value=no]").prop("selected", true);
-    } else {
-        $("#combo-name option").each(function(index, val) {
-            // console.log(val.innerText.toLowerCase() + "\t" + data.comboName.toLowerCase())
-            // console.log(val.innerText.toLowerCase() == data.comboName.toLowerCase())
-            if (val.innerText.toLowerCase() == data.comboName.toLowerCase()) {
-                val.setAttribute("selected", "");
-            }
-        })
+    try {
+        // var arrayEleOption = $("#combo-name option");
+        // console.log("length combo: " + data.comboName.length);
+        // console.log(data.comboName[0]);
+
+        if (data.comboName.indexOf("no") != -1) {
+            console.log("check no");
+            $("#combo-name option[value=no]")[0].setAttribute("selected", "");
+            // $('#combo-name').selectpicker('val', 'no');
+        } else {
+            console.log("check else");
+
+            data.comboName.forEach(itemNameCombo => {
+                $("#combo-name option").each(function(index, val) {
+                    if (val.innerText.toLowerCase() == itemNameCombo.toLowerCase()) {
+                        val.setAttribute("selected", "");
+                    }
+                })
+            });
+
+
+        }
+        $('#combo-name').selectpicker('render');
+        // checkSelectedCombo();
+    } catch (error) {
+        console.log(error);
     }
+
+
     $("#describe").val(data.describe);
     $("#image-link").val(data.imageLink);
 }
@@ -109,6 +127,37 @@ function updateDataFormDishTable(dataForm) {
             table.row(elementRow).data(objRow);
         }
     });
+}
+
+function checkSelectedCombo() {
+    console.log("length option: " + $("#combo-name option[selected]").length)
+    console.log("name option: " + $("#combo-name option[selected]"));
+    $("#combo-name option[selected]").each(function(index, val) {
+        console.log(val.value);
+    })
+
+    var lenOptionselected = $("#combo-name option[selected]").length;
+    var elesOptionselected = $("#combo-name option[selected]");
+
+    if (lenOptionselected == 1 && $(elesOptionselected)[0].getAttribute("value") == "no") {
+        console.log("check no")
+        $("#combo-name option").each(function(index, val) {
+                // console.log(val);
+                if (val.getAttribute("value") != "no") {
+                    val.setAttribute("disabled", "");
+                    val.removeAttribute("selected");
+                }
+            })
+            // $('#combo-name').selectpicker('val', ['101', '102']);
+            // $('#combo-name').selectpicker('val', '102');
+
+
+    } else if (lenOptionselected == 0) {
+        $("#combo-name option").removeAttr("disabled");
+    }
+
+
+    // $('#combo-name').selectpicker('render');
 }
 
 
@@ -171,6 +220,11 @@ $(document).ready(function() {
         console.log("data row clicked");
         console.log(data);
 
+        // reset selected
+        $("#combo-name option").each(function(index, val) {
+            val.removeAttribute("selected");
+        })
+        $("#combo-name").selectpicker('deselectAll');
         setDataFormDish(data);
     });
 
@@ -187,6 +241,35 @@ $(document).ready(function() {
         updateDataFormDishTable(dataFormDish);
 
     })
+
+    $(function() {
+        $('#combo-name').selectpicker();
+
+    });
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        $('.selectpicker').selectpicker('mobile');
+    }
+
+
+    // $(".dropdown-menu.show").click(function() {
+    //     console.log("click combo name");
+    //     checkSelectedCombo();
+    // })
+
+    $('#combo-name').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
+
+        // console.log(e)
+        // console.log(clickedIndex)
+
+        // console.log(isSelected)
+
+        // console.log(previousValue)
+        // checkSelectedCombo();
+
+    });
+
+
+
 
 
 
