@@ -89,20 +89,10 @@
      * form được đẩy lên đây là món ăn sau khi được sửa 1 số thứ, cập nhật lại thông tin món ăn trong db.
      * cần trả về 1 form như bên dưới, thông tin bên dưới này là thông tin món ăn sau khi được cập nhật
      */
-
-    // "idDish" => 4,
-    // "dishName" => "đùi gà",
-    // "conceptName" => "bbq alanticate",
-    // "comboName" => "buffet 289k",// nếu món ăn k thuộc combo nào thì chỗ này có giá trị là "no"
-    // "describe" => "ngon",
-    // "imageLink" => "linkanh.jpg",
-    // "price" => "12365" // giá món riêng thì là giá món riêng, nếu món ăn thuộc trong combo nào đó thì để trống giá tiền
-
-
     if(isset($_POST["updateDish"])) {
-        echo "<pre>";
-        print_r($_POST["updateDish"]);
-        echo "<pre>";
+        // echo "<pre>";
+        // print_r($_POST["updateDish"]);
+        // echo "<pre>";
 
         // 
         $idDish = $_POST["updateDish"]["id-dish"];
@@ -123,8 +113,11 @@
                 WHERE idmon_an = $idDish";
         $conn->query($sql);
 
-        //bh fix hết thì sửa cái này
-        if(count($idCombo)>0) {
+        //
+        if(in_array("Irix", $idCombo) && count($idCombo)==1) {
+            $sql = "DELETE FROM combo_monan WHERE idmon_an = $idDish";
+            $conn->query($sql);
+        } elseif (count($idCombo)>0 && !in_array("Irix", $idCombo)) {
             $sql = "DELETE FROM combo_monan WHERE idmon_an = $idDish";
             $conn->query($sql);
         
@@ -136,5 +129,40 @@
         }
         //echo json_encode($formDish);
 
+        $tempDataDish = array();
+            //
+            $sql = "SELECT mon_an.ten_mon_an, mon_an.mo_ta, mon_an.link_image, mon_an.idthuc_don, mon_an.gia, thuc_don.ten_thuc_don 
+                    FROM mon_an
+                    INNER JOIN thuc_don ON thuc_don.idthuc_don = mon_an.idthuc_don
+                    WHERE mon_an.idmon_an = $idDish";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $tempDataDish["idDish"] = $idDish;
+            $tempDataDish["dishName"] = $row["ten_mon_an"];
+            $tempDataDish["conceptName"] = $row["ten_thuc_don"];
+            $tempDataDish["describe"] = $row["mo_ta"];
+            $tempDataDish["imageLink"] = $row["link_image"];
+            if($row["idthuc_don"] == 1) {
+                $tempDataDish["price"] = '';
+            } else {
+                $tempDataDish["price"] = $row["gia"];
+            }
+
+            // 
+            $sql = "SELECT combo.name_combo FROM combo_monan
+                    INNER JOIN combo ON combo_monan.idcombo = combo.idcombo
+                    WHERE combo_monan.idmon_an = $idDish";
+            $result = $conn->query($sql);
+            $tempDataDish["comboName"] = array();
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $tempDataDish["comboName"][] = $row['name_combo'];
+                }
+            } else {
+                $tempDataDish["comboName"][] = 'no';
+            }
+            //
+
+        echo json_encode($tempDataDish);
     
     }
