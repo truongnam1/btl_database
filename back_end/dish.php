@@ -69,8 +69,8 @@
 
     function nameConcept() {
         $array = [
-            0 => "bbq buffet",
-            1 => "bbq alanticate"
+            0 => "King BBQ Buffet",
+            1 => "King BBQ Alacarte"
         ];
 
         return $array;

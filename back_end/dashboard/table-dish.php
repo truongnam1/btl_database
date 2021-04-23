@@ -66,7 +66,11 @@
             $tempDataDish["comboName"] = array();
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    $tempDataDish["comboName"][] = $row['name_combo'];
+                    if( substr($row['name_combo'] , 0, strpos($row['name_combo'], " ")) == 'Buffet' ) {
+                        $tempDataDish["comboName"][0] = 'Buffet';
+                    } else {
+                        $tempDataDish["comboName"][] = $row['name_combo'];
+                    }
                 }
             } else {
                 $tempDataDish["comboName"][] = 'no';
@@ -148,7 +152,58 @@
     if(isset($_POST["updateDish"])) {
         echo "<pre>";
         print_r($_POST["updateDish"]);
-        echo "</pre>";
+        echo "<pre>";
 
-        echo json_encode($formDish);
+        // 
+        $idDish = $_POST["updateDish"]["idDish"];
+        $dishName = $_POST["updateDish"]["dishName"];
+        $conceptName = $_POST["updateDish"]["conceptName"];
+        $comboName = $_POST["updateDish"]["comboName"];
+        $describe = $_POST["updateDish"]["describe"];
+        $imageLink = $_POST["updateDish"]["imageLink"];
+        $price = $_POST["updateDish"]["price"];
+
+        //
+        $sql = "UPDATE mon_an
+                SET ten_mon_an = '$dishName',
+                    mo_ta = '$describe',
+                    gia = '$price',
+                    link_image = '$imageLink'
+                WHERE idmon_an = $idDish";
+        $conn->query($sql);
+
+        //
+        $sql = "SELECT idthuc_don FROM thuc_don
+                WHERE ten_thuc_don = '$conceptName'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $idthuc_don = $row["idthuc_don"];
+        $sql = "UPDATE mon_an
+                SET idthuc_don = $idthuc_don
+                WHERE idmon_an = $idDish";
+        
+        //
+        $idcombo = array();
+        if(count($comboName)>0) {
+            foreach($comboName as $value) {
+                if($value != 'no') {
+                    $sql = "SELECT idcombo FROM combo
+                            WHERE name_combo = '$value'";
+                    $result = $conn->query($sql);
+                    $row = $result->fetch_assoc();
+                    $idcombo[] = $row["idcombo"];
+                }
+            }
+        }
+        if(count($idcombo)>0) {
+            $sql = "DELETE FROM combo_monan WHERE idmon_an = $idDish";
+            $conn->query($sql);
+        
+            foreach($idcombo as $value) {
+                $sql = "INSERT INTO combo_monan(idmon_an, idcombo)
+                        VALUES ($idDish, $value)";
+                $conn->query($sql);
+            }
+        }
+        //echo json_encode($formDish);
     }
