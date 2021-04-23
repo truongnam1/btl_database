@@ -1,5 +1,9 @@
 <?php
+// include_once 'connect.php';
+// include_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/btl_database/back_end/connect.php';
+    
     function listDish(){
+        global $conn;
         include 'connect.php';
 
         //lay ma thuc don
@@ -68,9 +72,6 @@
 
 
     function nameConcept() {
-        //include 'connect.php';
-
-        
         $array = [
             1 => "King BBQ Buffet",
             2 => "King BBQ Alacarte"

@@ -101,6 +101,7 @@ function setDataFormDish(data) {
 
     $("#describe").val(data.describe);
     $("#image-link").val(data.imageLink);
+    $("#dish-price").val(data.price);
 }
 
 function updateDataFormDishTable(dataForm) {
