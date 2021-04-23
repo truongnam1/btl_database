@@ -49,7 +49,7 @@ function postQueryArrayIdDish() {
             }
 
             // cái này để chia nhỏ dữ liệu post lên, nhiều quá post bị lỗi
-            var arrayID = chunkArray(JSON.parse(result), 4);
+            var arrayID = chunkArray(JSON.parse(result), 10);
             // console.log(arrayID);
             // console.log(JSON.parse(result).length);
             $.each(arrayID, function(key, idDish) {
@@ -108,17 +108,30 @@ function updateDataFormDishTable(dataForm) {
     var elementRow = element[0];
     var dataRowOld = table.row(elementRow).data();
     // console.log(table.row(elementRow).data());
-    dataForm.push({
-        "name": "id-dish",
-        "value": dataRowOld.idDish,
-    });
-    console.log(dataForm);
+
+    var data = {
+        "dish-name": $("#dish-name").val(),
+        "concept-name": $("#concept-name").val(),
+        "combo-id": $("#combo-name").val(),
+        "describe": $("#describe").val(),
+        "image-link": $("#image-link").val(),
+        "dish-price": $("#dish-price").val(),
+        "id-dish": dataRowOld.idDish
+    }
+
+
+    // dataForm.push({
+    //     "name": "id-dish",
+    //     "value": dataRowOld.idDish,
+    // });
+
+    console.log(data);
 
     $.ajax({
         url: "..\\back_end\\dashboard\\table-dish.php",
         type: "post",
         dataType: "text",
-        data: { updateDish: dataForm },
+        data: { updateDish: data },
         success: function(result) {
             var objRow = JSON.parse(result);
             console.log("data tra ve");
@@ -159,9 +172,6 @@ function checkSelectedCombo() {
 
     // $('#combo-name').selectpicker('render');
 }
-
-
-
 
 
 $(document).ready(function() {
@@ -236,8 +246,10 @@ $(document).ready(function() {
         console.log("update dish");
         // form-dish
         var dataFormDish = $('#form-dish form').serializeArray();
-        // console.log(dataFormDish);
-        // console.log("data day len");
+        console.log(dataFormDish);
+        console.log("data day len");
+
+
         updateDataFormDishTable(dataFormDish);
 
     })

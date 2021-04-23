@@ -66,11 +66,7 @@
             $tempDataDish["comboName"] = array();
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    if( substr($row['name_combo'] , 0, strpos($row['name_combo'], " ")) == 'Buffet' ) {
-                        $tempDataDish["comboName"][0] = 'Buffet';
-                    } else {
-                        $tempDataDish["comboName"][] = $row['name_combo'];
-                    }
+                    $tempDataDish["comboName"][] = $row['name_combo'];
                 }
             } else {
                 $tempDataDish["comboName"][] = 'no';
@@ -88,52 +84,6 @@
     //******************************************************* */
 
 
-
-    // Array
-    // (
-    //     [0] => Array
-    //         (
-    //             [name] => dish-name
-    //             [value] => đùi gà test 1821
-    //         )
-
-    //     [1] => Array
-    //         (
-    //             [name] => concept-name
-    //             [value] => 1 // id concept
-    //         )
-
-    //     [2] => Array
-    //         (
-    //             [name] => combo-name
-    //             [value] => 102  // id combo
-    //         )
-
-    //     [3] => Array
-    //         (
-    //             [name] => describe
-    //             [value] => ngon test 1013
-    //         )
-
-    //     [4] => Array
-    //         (
-    //             [name] => image-link
-    //             [value] => linkanh.jpg
-    //         )
-
-    //     [5] => Array
-    //         (
-    //             [name] => dish-price
-    //             [value] => 123 
-    //         )
-
-    //     [6] => Array
-    //         (
-    //             [name] => id-dish
-    //             [value] => 6
-    //         )
-
-    // )
     /**
      * $_POST["updateDish"]) trả về 1 mảng như trên
      * form được đẩy lên đây là món ăn sau khi được sửa 1 số thứ, cập nhật lại thông tin món ăn trong db.
@@ -163,7 +113,7 @@
         $imageLink = $_POST["updateDish"]["imageLink"];
         $price = $_POST["updateDish"]["price"];
 
-        //
+        // update tên món ăn, mô tả, giá, link ảnh của 1 món
         $sql = "UPDATE mon_an
                 SET ten_mon_an = '$dishName',
                     mo_ta = '$describe',
@@ -172,7 +122,8 @@
                 WHERE idmon_an = $idDish";
         $conn->query($sql);
 
-        //
+
+        // update concept của 1 món ăn
         $sql = "SELECT idthuc_don FROM thuc_don
                 WHERE ten_thuc_don = '$conceptName'";
         $result = $conn->query($sql);
@@ -182,6 +133,7 @@
                 SET idthuc_don = $idthuc_don
                 WHERE idmon_an = $idDish";
         
+
         //
         $idcombo = array();
         if(count($comboName)>0) {
@@ -206,4 +158,6 @@
             }
         }
         //echo json_encode($formDish);
+
+    
     }
