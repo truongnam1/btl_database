@@ -1,0 +1,96 @@
+/* slide content */
+
+#slideMenu {
+    position: relative;
+    width: 100%;
+}
+
+#slideMenu .carousel-caption {
+    position: absolute;
+    right: 15%;
+    bottom: 30%;
+    left: 15%;
+    z-index: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+#slideMenu .carousel-caption h3 {
+    font-size: 60px;
+}
+
+#slideMenu .carousel-caption p {
+    font-size: 22px;
+}
+
+#slideMenu .brush-dec {
+    position: absolute;
+    bottom: -1px;
+    background: url(../img/thuc-don/brush-dec.png) no-repeat;
+    height: 40px;
+    width: 100%;
+}
+
+
+/* menu */
+
+#nav-menu-combo {
+    margin-top: 40px;
+    font-size: 28px;
+}
+
+#nav-menu-combo .nav-item {
+    background-color: #f1f0f0;
+    padding: 6px 18px;
+}
+
+#nav-menu-combo .nav-item a {
+    color: black;
+}
+
+#nav-menu-combo .nav-link.active {
+    background-color: #f1f0f0;
+    color: #c19d60;
+    border: none
+}
+
+.combo-menu {
+    border: #eee 1px solid;
+    margin-bottom: 70px;
+    background: #f9f9f9;
+    padding-bottom: 40px;
+    padding-left: 14px;
+    padding-right: 14px;
+    margin-top: 50px;
+}
+
+.item-menu-combo>div {
+    margin-bottom: 20px;
+}
+
+.title-combo {
+    margin-bottom: 40px;
+    margin-top: 26px;
+}
+
+.title-combo h3 {
+    font-family: Segoe UI-MONOSPACE;
+    color: #c19d60;
+    text-align: center;
+    font-size: 44px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    /* font-family: 'Poppins', sans-serif; */
+    /* font-weight: 900; */
+}
+
+.item-menu-combo img {
+    border-radius: 50%;
+}
+
+.item-menu-combo img:hover {
+    transition: transform 0.5s;
+    filter: blur(1px);
+}
