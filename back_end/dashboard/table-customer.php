@@ -7,32 +7,86 @@
      */
     //lay arrayIdForm
     $sql;
-    if(isset($_POST["type-status"]) && $_POST["type-status"] == 'all') {
-        $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang";
+    // if(isset($_POST["type-status"]) && $_POST["type-status"] == 'all') {
+    //     $dateFrom = $_POST["dateForm"];
+    //     $dateTo = $_POST["dateTo"];
+    //     if(!empty($dateFrom) && !empty($dateTo)) {
+    //         $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
+    //             WHERE ngay_den BETWEEN '$dateFrom' AND '$dateTo'";
+    //     } else {
+    //         $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang";
+    //     }
+    // } elseif(isset($_POST["type-status"]) && !empty($_POST["dateForm"]) && !empty($_POST["dateTo"])) {
+    //     $trang_thai = $_POST["type-status"];
+    //     $dateFrom = $_POST["dateForm"];
+    //     $dateTo = $_POST["dateTo"];
+    //     $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
+    //             WHERE ngay_den BETWEEN '$dateFrom' AND '$dateTo' AND trang_thai = '$trang_thai'";
 
-    } elseif(isset($_POST["type-status"]) && !empty($_POST["dateForm"]) && !empty($_POST["dateTo"])) {
+    // } elseif(isset($_POST["type-status"]) && empty($_POST["dateForm"]) && !empty($_POST["dateTo"])) {
+    //     $trang_thai = $_POST["type-status"];
+    //     $dateTo = $_POST["dateTo"];
+    //     $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
+    //             WHERE ngay_den <= '$dateTo' AND trang_thai = '$trang_thai'";
+
+    // } elseif(isset($_POST["type-status"]) && !empty($_POST["dateForm"]) && empty($_POST["dateTo"])) {
+    //     $trang_thai = $_POST["type-status"];
+    //     $dateFrom = $_POST["dateForm"];
+    //     $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
+    //             WHERE ngay_den >= '$dateFrom' AND trang_thai = '$trang_thai'";
+    // } elseif(isset($_POST["type-status"])) {
+    //     $trang_thai = $_POST["type-status"];
+    //     $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
+    //                         WHERE trang_thai = '$trang_thai'";
+    // }
+
+    // if(isset($_POST["type-status"]) && $_POST["type-status"] == 'all') {
+    //     $dateFrom = $_POST["dateForm"];
+    //     $dateTo = $_POST["dateTo"];
+    //     if(!empty($dateFrom) && !empty($dateTo)) {
+    //         $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
+    //             WHERE ngay_den BETWEEN '$dateFrom' AND '$dateTo'";
+    //     } else {
+    //         $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang";
+    //     }
+    // } else
+    
+    if( !empty($_POST["dateForm"]) && !empty($_POST["dateTo"])) {
         $trang_thai = $_POST["type-status"];
         $dateFrom = $_POST["dateForm"];
         $dateTo = $_POST["dateTo"];
         $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
-                WHERE ngay_den BETWEEN '$dateFrom' AND '$dateTo' AND trang_thai = '$trang_thai'";
+                WHERE ngay_den BETWEEN '$dateFrom' AND '$dateTo'";
+        if($trang_thai != 'all') {
+            $GLOBALS['sql'] = $GLOBALS['sql'] . " AND trang_thai = '$trang_thai'";
+        }
 
-    } elseif(isset($_POST["type-status"]) && empty($_POST["dateForm"]) && !empty($_POST["dateTo"])) {
+    } elseif( empty($_POST["dateForm"]) && !empty($_POST["dateTo"])) {
         $trang_thai = $_POST["type-status"];
         $dateTo = $_POST["dateTo"];
         $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
-                WHERE ngay_den <= '$dateTo' AND trang_thai = '$trang_thai'";
+                WHERE ngay_den <= '$dateTo'";
+        if($trang_thai != 'all') {
+            $GLOBALS['sql'] = $GLOBALS['sql'] . " AND trang_thai = '$trang_thai'";
+        }
 
-    } elseif(isset($_POST["type-status"]) && !empty($_POST["dateForm"]) && empty($_POST["dateTo"])) {
+    } elseif( !empty($_POST["dateForm"]) && empty($_POST["dateTo"])) {
         $trang_thai = $_POST["type-status"];
         $dateFrom = $_POST["dateForm"];
         $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
-                WHERE ngay_den >= '$dateFrom' AND trang_thai = '$trang_thai'";
+                WHERE ngay_den >= '$dateFrom'";
+        if($trang_thai != 'all') {
+            $GLOBALS['sql'] = $GLOBALS['sql'] . " AND trang_thai = '$trang_thai'";
+        }
     } elseif(isset($_POST["type-status"])) {
         $trang_thai = $_POST["type-status"];
-        $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang
-                            WHERE trang_thai = '$trang_thai'";
+        $GLOBALS['sql'] = "SELECT idkhach_hang FROM khach_hang";
+        if($trang_thai != 'all') {
+            $GLOBALS['sql'] = $GLOBALS['sql'] . " WHERE trang_thai = '$trang_thai'";
+        }
     }
+
+
     
     if(isset($_POST["type-status"])) {
         $ArrayIdForm = array();
