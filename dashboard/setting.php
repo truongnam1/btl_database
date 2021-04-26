@@ -17,7 +17,6 @@ if (isset($_POST['changePass'])) {
         return $data;
     }
 
-
     if (isset($_POST["inputCurrentPass"]) && isset($_POST["inputNewPass"])) {
         $inputCurrentPass = testInput($_POST["inputCurrentPass"]);
         $inputNewPass = testInput($_POST["inputNewPass"]);
@@ -26,23 +25,25 @@ if (isset($_POST['changePass'])) {
         $inputNewPass = md5($inputNewPass);
         $username = $_SESSION['username'];
 
-        $sql = "SELECT username, password, level FROM admin_user WHERE username = '$username'";
+        $sql = "SELECT username, password FROM admin_user WHERE username = '$username'";
         $result = $conn->query($sql);
-        if ($result->num_rows == 1) {
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
             if ($inputCurrentPass != $row["password"]) {
-                $_SESSION["code"] = getCode(8);
+                $_SESSION["code"] = getCode(8); // sai mật khẩu đăng nhập
                 header("location: setting.php", true, 301);
                 exit;
             } else {
-                $sql = "INSERT INTO admin_user(password) VALUES ('$inputNewPass')";
-                $_SESSION["code"] = getCode(33);
+                $sql = "UPDATE admin_user SET password = '$inputNewPass' WHERE (username = '$username')";
+                $result = $conn->query($sql);
+                $_SESSION["code"] = getCode(33); // đổi mật khẩu thành công
                 header("location: setting.php", true, 301);
                 exit;
             }
         }
-    } 
-    else {
-        $_SESSION["code"] = getCode(20);
+    } else {
+        $_SESSION["code"] = getCode(20); // nhập thiếu
         header("location: setting.php", true, 301);
         exit;
     }
@@ -84,7 +85,7 @@ if (isset($_POST['changePass'])) {
 
         <!-- Sidebar -->
         <?php
-        include_once 'module_sidebar.php';
+        include_once './module/module_sidebar.php';
         ?>
         <!-- End of Sidebar -->
 
@@ -96,7 +97,7 @@ if (isset($_POST['changePass'])) {
 
                 <!-- Topbar -->
                 <?php
-                include_once 'module_topbar.php';
+                include_once './module/module_topbar.php';
                 ?>
                 <!-- End of Topbar -->
 
@@ -121,13 +122,13 @@ if (isset($_POST['changePass'])) {
                                         <div class="col-sm-4"></div>
                                         <form class="user col-sm-4" method="POST">
                                             <div class="form-group pass_show">
-                                                <input name="inputCurrentPass" type="password" class="form-control form-control-user d-flex justify-content-center" id="inputCurrentPass" placeholder="Current Password">
+                                                <input name="inputCurrentPass" type="password" class="form-control form-control-user d-flex justify-content-center" id="inputCurrentPass" placeholder="Current Password" required>
                                             </div>
                                             <div class="form-group pass_show">
-                                                <input name="inputConfirmPass" type="password" class="form-control form-control-user d-flex justify-content-center" id="inputNewPass" placeholder="New Password">
+                                                <input name="inputNewPass" type="password" class="form-control form-control-user d-flex justify-content-center" id="inputNewPass" placeholder="New Password" required>
                                             </div>
                                             <div class="form-group pass_show">
-                                                <input type="password" class="form-control form-control-user d-flex justify-content-center" id="inputConfirmPass" placeholder="Confirm Password">
+                                                <input type="password" class="form-control form-control-user d-flex justify-content-center" id="inputConfirmPass" placeholder="Confirm Password" required>
                                             </div>
                                             <button name="changePass" type="submit" class="btn btn-primary btn-user btn-block d-flex justify-content-center">Change password</button>
 
@@ -151,13 +152,9 @@ if (isset($_POST['changePass'])) {
     <!-- End of Main Content -->
 
     <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2020</span>
-            </div>
-        </div>
-    </footer>
+    <?php
+        include './module/module_footer.php';
+    ?>
     <!-- End of Footer -->
 
     </div>
@@ -172,23 +169,9 @@ if (isset($_POST['changePass'])) {
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="logout.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php
+        include './module/module_logout_modal.php';
+    ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -212,6 +195,24 @@ if (isset($_POST['changePass'])) {
             });
 
         });
+    </script>
+
+
+    <script>
+        var password = document.getElementById("inputNewPass"),
+            confirm_password = document.getElementById("inputConfirmPass");
+        // var eleUsername = document.getElementById("inputUsername");
+
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Mật khẩu không khớp");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
     </script>
     <?php
     if (isset($_SESSION['code'])) {
