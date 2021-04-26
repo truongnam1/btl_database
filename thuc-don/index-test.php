@@ -70,7 +70,7 @@ include_once 'html-thuc-don-test.php';
             <div id="buffet" class="container tab-pane active"><br>
                 <!-- bat dau lap -->
                 <?php
-                echo htmlComboBuffet();
+                htmlComboBuffet();
                 ?>
                 <!-- ket thuc lap -->
             </div>
@@ -78,14 +78,17 @@ include_once 'html-thuc-don-test.php';
             <div id="alaticare" class="container tab-pane fade"><br>
                 <!-- bat dau alaticare  -->
                 <?php
-                echo htmlComboAlarcate();
+                htmlComboAlarcate();
+
                 ?>
                 <!-- ket thuc alaticare  -->
             </div>
 
             <div id="other" class="container tab-pane fade"><br>
-                <h3>Menu 2</h3>
-                <p>Saaed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            <?php
+                htmlComboOther();
+
+                ?>
             </div>
         </div>
         <!-- ket thuc panes -->

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!(isset($_SESSION['username']) && $_SESSION['level'] == 1)) {
+    header("Location: login.php", true, 301);
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,7 +144,7 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
-                        <div class="row">
+                        <div class="row" id="form-header">
                             <div class="col-2">
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#infoForm" id="toggle-form-edit">
                                     Chỉnh sửa
@@ -144,22 +152,22 @@
                             </div>
                             <div class="d-flex col-10" id="form-query">
                                 <div class="col-3">
-                                    <select name="type-status" id="type-status">
+                                    <select name="type-status" class="custom-select" id="type-status">
                                         <option value="đã xử lý">Đã xử lý</option>
                                         <option value="chưa xử lý">Chưa xử lý</option>
                                         <option value="đã hủy">Đã hủy</option>
                                         <option value="all">All</option>
                                     </select>
                                 </div>
-                                <div class="col-5 d-flex">
+                                <div class="col-6 d-flex" id="date-query">
 
-                                    <p>Từ</p>
-                                    <input type="date" name="dateForm" id="dateForm">
-                                    <p>đến</p>
-                                    <input type="date" name="dateTo" id="dateTo">
-                                </div class="col-3 d-flex">
+                                    <p class="item-date-query">Từ</p>
+                                    <input class="item-date-query" type="date" name="dateForm" id="dateForm">
+                                    <p class="item-date-query">đến</p>
+                                    <input class="item-date-query" type="date" name="dateTo" id="dateTo">
+                                </div>
                                 <!-- <button type="submit" class="btn btn-outline-secondary">Try vấn</button> -->
-                                <div>
+                                <div class="col-3 d-flex">
                                     <button class="btn btn-primary" id="btn-query">
                                         Truy vấn</button>
                                 </div>
@@ -261,7 +269,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>

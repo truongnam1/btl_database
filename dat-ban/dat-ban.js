@@ -28,3 +28,8 @@ formDatBan.querySelector('#inputState').onchange = function() {
     changeBranch(getKhuVuc());
 
 }
+
+
+document.querySelector("#submit-form").addEventListener("click", function() {
+    console.log("click submit")
+})

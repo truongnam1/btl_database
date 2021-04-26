@@ -1,7 +1,7 @@
 
 <?php
 include "../back_end/branch.php";
-
+// http_response_code(404); exit();
 // echo "<pre>";
 // print_r(listBranches());
 // echo "</pre>";

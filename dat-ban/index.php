@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -154,7 +160,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="inputphoneno">Số điện thoại</label>
-                <input type="text" class="form-control" id="inputphoneNo" name="inputPhoneNo-down" required>
+                <input type="number" class="form-control" id="inputphoneNo" name="inputPhoneNo-down" pattern=".{6,}" title="Số điện thoại quá ngắn" required>
               </div>
             </div>
             <div class="form-group">
@@ -196,7 +202,7 @@
                   <!-- <option selected disabled hidden value="default">---</option> -->
                   <option disabled hidden value="default">---</option>
                   <?php
-                  for ($i = 2; $i <= 50; $i+=2) {
+                  for ($i = 2; $i <= 50; $i += 2) {
                     echo "<option>$i</option>";
                   }
                   ?>
@@ -218,7 +224,7 @@
               <label for="exampleFormControlTextarea1">Lời nhắn</label>
               <textarea class="form-control" id="formControlTextarea1" rows="3" name="note"></textarea>
             </div>
-            <button type="submit" class="btn btn-outline-secondary btn-submit-datban" name="submit">Đặt bàn ngay</button>
+            <button type="submit" class="btn btn-outline-secondary btn-submit-datban" id="submit-form" name="datban">Đặt bàn ngay</button>
           </form>
         </div>
         <!-- end form -->
@@ -232,11 +238,11 @@
 
 
       <!-- test -->
-    
 
-    <!-- end test -->
 
-  </div>
+      <!-- end test -->
+
+    </div>
   </div>
 
 
@@ -253,8 +259,15 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+  <?php
+  if (isset($_SESSION["status_datban"])) {
+    include_once 'status-dat-ban.php';
+    loadPopup($_SESSION["status_datban"]);
+    unset($_SESSION["status_datban"]);
+  }
+  ?>
   <!-- js customs -->
+
   <script src="dat-ban.js"></script>
 </body>
 

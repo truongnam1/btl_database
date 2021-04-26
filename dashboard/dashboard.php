@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!(isset($_SESSION['username']) && $_SESSION['level'] == 1)) {
+    header("Location: login.php", true, 301);
+    exit;
+}
 include_once "../back_end/dashboard/dashboard.php";
 ?>
 
@@ -226,7 +231,7 @@ include_once "../back_end/dashboard/dashboard.php";
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -246,13 +251,13 @@ include_once "../back_end/dashboard/dashboard.php";
     <!-- Page level plugins -->
     <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
-     <!-- cái này k cần -->
+    <!-- cái này k cần -->
     <!-- Page level custom scripts -->
     <!-- <script src="js/demo/chart-area-demo.js"></script> -->
     <!-- <script src="js/demo/chart-pie-demo.js"></script> -->
 
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {
             'packages': ['corechart']
@@ -262,23 +267,23 @@ include_once "../back_end/dashboard/dashboard.php";
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Month', 'Số đơn'],
-                // ['1', 160],
-                // ['2', 140],
-                // ['3', 120],
-                // ['4', 400],
-                // ['5', 420],
-                // ['6', 180],
-                // ['7', 100],
-                // ['8', 100],
-                // ['9', 170],
-                // ['10', 100],
-                // ['11', 340],
-                // ['12', 193],
+                ['1', 160],
+                ['2', 140],
+                ['3', 120],
+                ['4', 400],
+                ['5', 420],
+                ['6', 180],
+                ['7', 100],
+                ['8', 100],
+                ['9', 170],
+                ['10', 100],
+                ['11', 340],
+                ['12', 193],
                 <?php
-                $list = f4();
-                foreach ($list as $month => $value) {
-                    echo "[$month, $value],";
-                }
+                // $list = f4();
+                // foreach ($list as $month => $value) {
+                //     echo "[$month, $value],";
+                // }
                 ?>
 
             ]);
@@ -294,6 +299,54 @@ include_once "../back_end/dashboard/dashboard.php";
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
             chart.draw(data, options);
+        }
+    </script> -->
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {
+            packages: ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ["Element", "Số đơn", {
+                    role: "style"
+                }],
+                // ["Copper", 8.94, "#b87333"],
+                // ["Silver", 10.49, "#b87333"],
+                // ["Gold", 56, "blue"],
+                // ["Platinum", 21.45, "color: #e5e4e2"]
+
+                <?php
+                $list = f4();
+                foreach ($list as $month => $value) {
+                    echo "[$month, $value, '#3960CF' ],";
+                }
+                ?>
+            ]);
+
+            var view = new google.visualization.DataView(data);
+            // view.setColumns([0, 1,
+            //     {
+            //         calc: "stringify",
+            //         sourceColumn: 1,
+            //         type: "string",
+            //         role: "annotation"
+            //     },
+            //     2
+            // ]);
+
+            var options = {
+                title: '',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                }
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById("curve_chart"));
+            chart.draw(view, options);
         }
     </script>
 

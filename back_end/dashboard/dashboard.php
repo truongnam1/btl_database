@@ -122,9 +122,9 @@ function f4() {
 
 
 
-echo "<pre>";
-print_r(f4());
-echo "<pre>";
+// echo "<pre>";
+// print_r(f4());
+// echo "<pre>";
 
     
 

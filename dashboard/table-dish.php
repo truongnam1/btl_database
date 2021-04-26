@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+if (!(isset($_SESSION['username']) && $_SESSION['level'] == 1)) {
+    header("Location: login.php", true, 301);
+    exit;
+}
+
 include_once '../back_end/dashboard/html-table-dish.php';
 ?>
 
@@ -217,7 +224,7 @@ include_once '../back_end/dashboard/html-table-dish.php';
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>

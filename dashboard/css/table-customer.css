@@ -1,3 +1,15 @@
 #dataTable tbody tr.selected {
     background: #cef1ff;
 }
+
+#form-header {
+    /* font-size: 20px; */
+}
+
+#type-status {}
+
+#date-query .item-date-query {
+    padding: 0 10px;
+}
+
+#date-query p {}
