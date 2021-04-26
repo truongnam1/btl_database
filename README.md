@@ -6,9 +6,7 @@
 # Tính năng:
 - Đối với khách hàng:
   + Cung cấp thực đơn món ăn (có hình ảnh minh họa) cùng đơn giá cụ thể.
-  + Cung cấp Concept, Combo món ăn cụ thể.
-  + Cung cấp địa chỉ các nhà hàng để khách hàng có sự lựa chọn thuận tiện nhất.
-  + Hỗ trợ đặt bàn theo lựa chọn của khách hàng.
+  + Hỗ trợ đặt bàn theo lựa chọn của khách hàng (Thời gian, địa điểm, số ghế...)
 - Đối với nhân quản lý nhà hàng:
   + Tiếp nhận yêu cầu đặt bàn của khách hàng.
 
