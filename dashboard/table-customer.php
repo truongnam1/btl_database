@@ -4,7 +4,6 @@ if (!(isset($_SESSION['username']) && $_SESSION['level'] == 1)) {
     header("Location: login.php", true, 301);
     exit;
 }
-echo $_SERVER['PHP_SELF'];
 ?>
 
 <!DOCTYPE html>
@@ -237,8 +236,8 @@ echo $_SERVER['PHP_SELF'];
 
             <!-- Footer -->
             <?php
-        include './module/module_footer.php';
-    ?>
+            include './module/module_footer.php';
+            ?>
             <!-- End of Footer -->
 
         </div>
@@ -254,7 +253,7 @@ echo $_SERVER['PHP_SELF'];
 
     <!-- Logout Modal-->
     <?php
-        include './module/module_logout_modal.php';
+    include './module/module_logout_modal.php';
     ?>
 
     <!-- Bootstrap core JavaScript-->
@@ -274,6 +273,12 @@ echo $_SERVER['PHP_SELF'];
     <!-- Page level custom scripts -->
     <!-- <script src="js/demo/datatables-demo.js"></script> -->
     <script src="js/table-customer/datatables-customer.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#tableCustomerNav").addClass("active");
+        });
+    </script>
 
 
 </body>

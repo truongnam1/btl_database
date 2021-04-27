@@ -12,7 +12,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item" id="tableDashboardNav">
         <a class="nav-link" href="dashboard.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -27,14 +27,14 @@
             </div> -->
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+    <li class="nav-item" id="tableCustomerNav">
         <a class="nav-link" href="table-customer.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Table customers</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li class="nav-item" id="tableDishNav">
         <a class="nav-link" href="table-dish.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Table dish</span></a>

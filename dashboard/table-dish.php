@@ -208,7 +208,7 @@ include_once '../back_end/dashboard/html-table-dish.php';
 
     <!-- Logout Modal-->
     <?php
-        include './module/module_logout_modal.php';
+    include './module/module_logout_modal.php';
     ?>
 
     <!-- Bootstrap core JavaScript-->
@@ -234,6 +234,12 @@ include_once '../back_end/dashboard/html-table-dish.php';
     <!-- custom js -->
 
     <script src="./js/table-dish/table-dish.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#tableDishNav").addClass("active");
+        });
+    </script>
 
 </body>
 

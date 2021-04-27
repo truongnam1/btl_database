@@ -332,6 +332,12 @@ include_once "../back_end/dashboard/dashboard.php";
         }
     </script>
 
+<script>
+        $(document).ready(function() {
+            $("#tableDashboardNav").addClass("active");
+        });
+    </script>
+
 </body>
 
 </html>
