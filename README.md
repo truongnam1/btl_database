@@ -1,4 +1,4 @@
-# btl_database
+# Website nhà hàng
 # Đối tượng phục vụ:
   + Khách hàng.
   + Quản lý nhà hàng.
