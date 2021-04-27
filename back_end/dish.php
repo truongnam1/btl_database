@@ -66,6 +66,7 @@
             $dish['link_image'] = $row["link_image"];
             $list[$row["ten_mon_an"]] = $dish;
         }
+        $conn->close();
 
         return $list;
     }

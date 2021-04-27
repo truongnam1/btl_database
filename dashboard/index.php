@@ -29,7 +29,7 @@ if (isset($_POST['login'])) {
     // mã hóa pasword
     $password = md5($password);
 
-    $sql = "SELECT username, password, level FROM admin_user WHERE username = '$username'";
+    $sql = "SELECT username, firstName, lastName,password, level FROM admin_user WHERE username = '$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -44,7 +44,10 @@ if (isset($_POST['login'])) {
             header("Location: login.php", true, 301);
             exit;
         } else if ($username == $row["username"] && $password == $row["password"] && $row["level"] == 1) {
+
             $_SESSION['username'] = $username;
+            $_SESSION["firstName"] = $row["firstName"];
+            $_SESSION["lastName"] = $row["lastName"];
             $_SESSION['level'] = $row["level"];
             // $_SESSION['code'] = getCode(1); // đăng nhập thành công
             header("Location: dashboard.php", true, 301);

@@ -97,7 +97,7 @@ if (isset($_POST['changePass'])) {
 
                 <!-- Topbar -->
                 <?php
-                include_once './module/module_topbar.php';
+                include_once 'module_topbar.php';
                 ?>
                 <!-- End of Topbar -->
 

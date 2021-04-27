@@ -1,7 +1,7 @@
 <?php
     function combo_id_Price() {
         include_once 'connect.php';
-
+        global $conn;
         $list_thuc_don = array();
         $sql = "SELECT idthuc_don,ten_thuc_don FROM thuc_don";
         $result = $conn->query($sql);

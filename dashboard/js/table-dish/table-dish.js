@@ -175,9 +175,13 @@ function checkSelectedCombo() {
 }
 
 
+
+
+
 $(document).ready(function() {
 
     table = $('#data-table-dish').DataTable({
+
         // autoFill: true,
         columns: [
             { data: 'dishName' },
@@ -280,6 +284,7 @@ $(document).ready(function() {
         // checkSelectedCombo();
 
     });
+
 
 
 

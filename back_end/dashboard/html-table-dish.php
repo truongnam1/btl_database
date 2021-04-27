@@ -33,8 +33,17 @@ function htmlOptionCombo() {
         }
         // <input type="checkbox" class="form-check-input" value="">Option 2
     }
-    $html = $html . '<option code="no" " value="no">không</option>;';
+    $html = $html . '<option code="no" " value="no">không</option>';
     return $html;
+}
+
+
+if(isset($_POST["getCombo"])) {
+    echo htmlOptionCombo();
+}
+
+if(isset($_POST["getConcept"])) {
+    echo htmlOptionConcept();
 }
 
 // echo '<select name="concept-name" class="custom-select" id="concept-name">';                                                       

@@ -47,7 +47,7 @@ if (!(isset($_SESSION['username']) && $_SESSION['level'] == 1)) {
 
                 <!-- Topbar -->
                 <?php
-                include_once './module/module_topbar.php';
+                include_once 'module_topbar.php';
                 ?>
                 <!-- End of Topbar -->
 
