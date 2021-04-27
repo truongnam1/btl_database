@@ -5,7 +5,7 @@
 
 # Tính năng:
 - Đối với khách hàng:
-  + Cung cấp thực đơn món ăn (có hình ảnh minh họa), combo, concept cùng đơn giá cụ thể.
+  + Cung cấp thực đơn món ăn (có hình ảnh minh họa), combo, concept.
   + Hỗ trợ đặt bàn theo lựa chọn của khách hàng (Thời gian, địa điểm, số ghế...)
 - Đối với nhân quản lý nhà hàng:
   + Đăng ký/đăng nhập tài khoản.
