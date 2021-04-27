@@ -104,6 +104,16 @@
 ._content-menu .box-text a {
     /* width: 100%; */
     color: #c9c4c4;
+    margin-top: 16px;
+    text-decoration: none;
+}
+
+._content-menu .box-text a:hover {
+    color: #c59d5f;
+}
+
+._content-menu .box-text h5 {
+    margin-top: 16px;
 }
 
 ._content-menu .left-item>img,

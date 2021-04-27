@@ -63,7 +63,7 @@ if (isset($_POST['changePass'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Setting</title>
+    <title>Quản lý nhà hàng - Setting</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

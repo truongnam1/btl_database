@@ -7,6 +7,7 @@ if (!isset($_SESSION["active"]) || !isset($_SESSION["username"]) || !$_SESSION["
 } else {
     echo "ton tai";
     include_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/btl_database/back_end/connect.php';
+    include_once '../back_end/dashboard/code_status.php';
     $username = $_SESSION["username"];
     $token = $_SESSION["token"];
     $sql = "SELECT token, username,died_time_token FROM admin_user WHERE username = '$username'";

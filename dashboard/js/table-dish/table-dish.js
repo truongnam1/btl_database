@@ -120,12 +120,6 @@ function updateDataFormDishTable(dataForm) {
         "id-dish": dataRowOld.idDish
     }
 
-
-    // dataForm.push({
-    //     "name": "id-dish",
-    //     "value": dataRowOld.idDish,
-    // });
-
     console.log(data);
 
     $.ajax({

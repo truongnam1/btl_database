@@ -4,6 +4,7 @@ if (!(isset($_SESSION['username']) && $_SESSION['level'] == 1)) {
     header("Location: login.php", true, 301);
     exit;
 }
+echo $_SERVER['PHP_SELF'];
 ?>
 
 <!DOCTYPE html>
@@ -135,14 +136,13 @@ if (!(isset($_SESSION['username']) && $_SESSION['level'] == 1)) {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800">Thông tin đặt bàn</h1>
+                    <p class="mb-4">Thông tin dặt bàn của khách hàng sẽ hiển thị tại đây.</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Bảng thông tin đặt bàn</h6>
                         </div>
                         <div class="row" id="form-header">
                             <div class="col-2">

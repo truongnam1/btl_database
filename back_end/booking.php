@@ -30,6 +30,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["datban"])) {
         exit;
     }
 
+    $regex_name = "/[\^<,\"\'@\/\{\}\(\)\*\$%\?=>:\|;#]+/i";
+    $regex_email = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
+    $regex_numberPhone = '/^[0-9]+$/';
+
+    if (preg_match($regex_name, $name) || !preg_match($regex_name, $email) || !preg_match($regex_numberPhone, $phoneNumber)) {
+        $_SESSION["status_datban"] = "error";
+        header("Location: ../dat-ban/", true, 301);
+        exit;
+    }
+
+
     // echo "name:" .  $name . "<br>";
     // echo "phoneNumber:" . $phoneNumber . "<br>";
     // echo "email:" . $email . "<br>";
@@ -97,7 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["datban"])) {
         $conn->close();
         header("Location: ../dat-ban/", true, 301);
         exit;
-
     } catch (Exception $e) {
         echo "Lỗi đặt bàn, vui lòng thử lại <br>";
         echo '<button onclick="goBack()">Quay lại đặt bàn</button>';
@@ -111,7 +121,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["datban"])) {
         header("Location: ../dat-ban/", true, 301);
         $conn->close();
         exit;
-
     }
 } else {
     header("Location: ../dat-ban/", true, 301);

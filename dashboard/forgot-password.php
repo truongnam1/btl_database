@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 if (isset($_SESSION['username']) && isset($_SESSION['level']) == 1) {
     header("Location: dashboard.php", true, 301);
@@ -20,9 +20,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['level']) == 1) {
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -46,25 +44,23 @@ if (isset($_SESSION['username']) && isset($_SESSION['level']) == 1) {
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                                        <p class="mb-4">We get it, stuff happens. Just enter your email address below
+                                        <h1 class="h4 text-gray-900 mb-2">Forgot password?</h1>
+                                        <p class="mb-4">Just enter your email address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
                                     <form class="user row" action="index.php" method="POST">
                                         <div class="form-group col-12 col-md-8">
-                                            <input type="email" name= "inputEmail"class="form-control form-control-user"
-                                                id="inputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." required>
+                                            <input type="email" name="inputEmail" class="form-control form-control-user" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." required>
                                         </div>
                                         <button name="reset-password" type="submit" class="col-12 col-md-4
                                          btn btn-primary btn-user btn-block">Reset Password</button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="register.php">Create an Account!</a>
+                                        <a class="small" href="register.php">Đăng ký</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="login.php">Already have an account? Login!</a>
+                                        <a class="small" href="login.php">Đã có tài một tài khoản? Đăng nhập!</a>
                                     </div>
                                 </div>
                             </div>

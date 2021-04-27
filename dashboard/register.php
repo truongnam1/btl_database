@@ -18,7 +18,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['level']) == 1) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Register</title>
+    <title>Đăng ký</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,7 +41,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['level']) == 1) {
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Tạo một tài khoản!</h1>
                             </div>
                             <form action="index.php" method="POST" class="user">
                                 <div class="form-group row">
@@ -66,15 +66,15 @@ if (isset($_SESSION['username']) && isset($_SESSION['level']) == 1) {
                                         <input type="password" class="form-control form-control-user" id="repeatPassword" placeholder="Repeat Password" required>
                                     </div>
                                 </div>
-                                <button type="submit" name="register" class="btn btn-primary btn-user btn-block">Register Account</button>
+                                <button type="submit" name="register" class="btn btn-primary btn-user btn-block">Đăng ký tài khoản</button>
                                 <hr>
 
                             </form>
                             <div class="text-center">
-                                <a class="small" href="forgot-password.php">Forgot Password?</a>
+                                <a class="small" href="forgot-password.php">Quên mật khẩu?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.php">Already have an account? Login!</a>
+                                <a class="small" href="login.php">Đã có tài một tài khoản? Đăng nhập!</a>
                             </div>
                         </div>
                     </div>

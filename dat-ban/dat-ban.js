@@ -1,16 +1,14 @@
 var formDatBan = document.querySelector('.form-datban');
 
+
 function getKhuVuc() {
     var elementSelectKV = formDatBan.querySelector("#inputState");
     return elementSelectKV.value;
 }
-console.log(getKhuVuc());
-changeBranch(getKhuVuc());
-console.log(formDatBan.querySelector("#inputBranch :not([hidden])"));
+document.onload = function() { changeBranch(getKhuVuc()); };
 
 function changeBranch(khu_vuc) {
     var elementInputBr = formDatBan.querySelectorAll('#inputBranch option')
-        // console.log(elementInputBr);
     elementInputBr.forEach(branch => {
         if (branch.value.search(khu_vuc) == -1) {
             branch.setAttribute('hidden', '');
@@ -20,7 +18,6 @@ function changeBranch(khu_vuc) {
         }
         branch.removeAttribute("selected");
     });
-    console.log(formDatBan.querySelector("#inputBranch :not([hidden])"));
     formDatBan.querySelector("#inputBranch :not([hidden])").setAttribute("selected", "");
 }
 
@@ -29,7 +26,26 @@ formDatBan.querySelector('#inputState').onchange = function() {
 
 }
 
+document.onload = function() {
+    document.querySelector("#submit-form").addEventListener("click", function() {})
+};
 
-document.querySelector("#submit-form").addEventListener("click", function() {
-    console.log("click submit")
-})
+
+var eleInputFullName = document.querySelector("#inputfullname-down");
+
+function validateName() {
+    console.log("name:" + eleInputFullName.value);
+    var name_regex = "^([a-zA-Z\xC0-\uFFFF]{1,10}[ \-\']{0,1}){1,8}$";
+    var patt = new RegExp(name_regex);
+    var res = patt.test(eleInputFullName.value);
+    console.log("res: " + res);
+    if (!res) {
+        eleInputFullName.setCustomValidity("Tên người chỉ bao gồm các chữ cái");
+
+    } else {
+        eleInputFullName.setCustomValidity('');
+    }
+
+
+}
+eleInputFullName.oninput = validateName;

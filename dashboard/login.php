@@ -18,7 +18,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['level']) == 1) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login</title>
+    <title>Đăng nhập</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -60,10 +60,10 @@ if (isset($_SESSION['username']) && isset($_SESSION['level']) == 1) {
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.php">Forgot Password?</a>
+                                        <a class="small" href="forgot-password.php">Quên mật khẩu?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.php">Create an Account!</a>
+                                        <a class="small" href="register.php">Chưa có tài khoản? Đăng ký!</a>
                                     </div>
                                 </div>
                             </div>

@@ -8,7 +8,7 @@ session_start();
 <html lang="en">
 
 <head>
-  <title>đặt bàn</title>
+  <title>Đặt bàn</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -122,8 +122,8 @@ session_start();
           <div class="left-item col-md-6">
             <img src="..\assets\img\dat-ban\img-menu-left.png" alt="">
             <div class="box-text">
-              <a href="">
-                <h5>Buffet</h5>
+              <a href="../thuc-don/">
+                <h5>KING BBQ Buffet</h5>
               </a>
             </div>
           </div>
@@ -131,8 +131,8 @@ session_start();
             <img src="..\assets\img\dat-ban\img-menu-right.png" alt="">
             <div class="box-text">
 
-              <a href="">
-                <h5>Alarcate</h5>
+              <a href="../thuc-don/">
+                <h5>KING BBQ Alarcate</h5>
               </a>
             </div>
           </div>

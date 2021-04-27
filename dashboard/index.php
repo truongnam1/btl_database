@@ -68,6 +68,13 @@ if (isset($_POST['register'])) {
     $lastName = testInput($_POST['last-name']);
     $email = testInput($_POST['email']);
 
+
+    if (!preg_match('/^[a-z\d_]{8,20}$/i', $username)) {
+        $_SESSION['code'] = getCode(36); // thiếu dữ liệu
+        header("Location: register.php", true, 301);
+        exit;
+    } 
+
     if (!$username || !$password || !$email || !$firstName || !$lastName) {
         $_SESSION['code'] = getCode(20); // thiếu dữ liệu
         header("Location: register.php", true, 301);
@@ -152,7 +159,7 @@ if (isset($_POST['reset-password'])) {
         $title = "";
         $body = "";
         $randToken = randString();
-        $timePlus = 2; // phút
+        $timePlus = 1; // phút
         $timeExp = time() + 60 * $timePlus;
         contentEmail($title, $body, $randToken, $timePlus);
         $sendMail = new SendMail($title, $body, $email);

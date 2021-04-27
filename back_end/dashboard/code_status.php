@@ -20,6 +20,7 @@ $arrayCode = [
     33 => "Đổi mật khẩu thành công",
     34 => "Mã khôi phục đã hết hạn",
     35 => "Đã hết hạn thời gian khôi phục mật khẩu",
+    36 => "Sai dữ liệu",
 ];
 
 function getCode($code) {
