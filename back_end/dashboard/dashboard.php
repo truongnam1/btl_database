@@ -108,6 +108,7 @@ function f4() {
     for($i=1 ; $i<=12 ; $i++) {
         $list[$i] = 0;
     }
+
     $sql = "SELECT MONTH(ngay_den) AS month, COUNT(*) AS count 
             FROM khach_hang
             GROUP BY month

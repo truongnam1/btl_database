@@ -159,7 +159,7 @@ if (isset($_POST['reset-password'])) {
         $title = "";
         $body = "";
         $randToken = randString();
-        $timePlus = 1; // phút
+        $timePlus = 2; // phút
         $timeExp = time() + 60 * $timePlus;
         contentEmail($title, $body, $randToken, $timePlus);
         $sendMail = new SendMail($title, $body, $email);
