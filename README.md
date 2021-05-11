@@ -4,10 +4,13 @@
   + Quản lý nhà hàng.
 
 # Tính năng:
+  
 - Đối với khách hàng:
+- + Link : http://restaurantvip.xyz
   + Cung cấp thực đơn món ăn (có hình ảnh minh họa), combo, concept.
   + Hỗ trợ đặt bàn theo lựa chọn của khách hàng (Thời gian, địa điểm, số ghế...)
 - Đối với nhân quản lý nhà hàng:
+  + Link : http://restaurantvip.xyz/dashboard
   + Đăng ký/đăng nhập tài khoản.
   + Quên mật khẩu.
   + Quản lý thực đơn.
